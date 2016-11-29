@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   
+          http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="springCtxUtils" class="com.joe.myvideo.util.SpringCtxUtils" />
+	<bean id="sysConfig" class="com.joe.myvideo.util.SysConfig" />
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+		 <!-- 开启注解配置 -->
+	 <context:annotation-config />
+	
+	 <!-- 对指定的包进行组件扫描 -->
+	 <context:component-scan base-package="com.joe.myvideo.*" />
+
+
+    <jee:jndi-lookup id="props" jndi-name="java:comp/env/props"/>
+    <bean class="com.joe.myvideo.util.SysConfig">
+		<property name="locations">
+			<list>
+				<value>file:#{props}</value>
+				<value>classpath:*.properties</value>
+			</list>
+		</property>
+
+		<!-- <property name="ignoreResourceNotFound" value="true" /> -->
+		<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
+		<property name="valueSeparator" value=":=" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+	     <property name="dataSource" ref="dataSource" />  
+	     <property name="configLocation" value="classpath:mybatis-config.xml"></property>  
+	</bean>  
+<!-- 	<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">  
+	    <property name="mapperInterface" value="com.joe.myvideo.service"></property>  
+	    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>  
+	 </bean>   --> 
+	 
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<property name="basePackage" value="com.joe.myvideo.service" />
+	</bean> 
+
+<!-- 	<bean id="mccSocketIOPool" class="com.danga.MemCached.SockIOPool"
+		factory-method="getInstance" init-method="initialize" destroy-method="shutDown"
+		p:servers="${memcached.servers:=127.0.0.1:11211}" p:maxConn="${memcached.maxConn:=50}"
+		p:initConn="${memcached.initConn:=10}" p:socketConnectTO="${memcached.socketConnectTO:=800}"
+		p:socketTO="${memcached.socketTO:=500}" p:maintSleep="${memcached.maintSleep:=3000}"
+		p:failover="${memcached.failover:=false}" p:failback="${memcached.failback:=false}"
+		p:nagle="${memcached.nagle:=false}">
+		<constructor-arg value="video" />
+	</bean> -->
+
+<!-- 	<bean id="mcc" class="com.danga.MemCached.MemCachedClient"
+		p:sanitizeKeys="false">
+		<constructor-arg value="video" />
+	</bean> -->
+
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/myvideo" />
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="dataSource" />
+
+	<context:component-scan
+		base-package="com.joe.framework.base.service,com.joe.framework.base.dao">
+		<context:include-filter type="regex"
+			expression=".*" />
+	</context:component-scan>
+
+	<!-- 注解方式配置事务 start -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="list*" read-only="true" propagation="NOT_SUPPORTED" />
+			<tx:method name="get*" read-only="true" propagation="NOT_SUPPORTED" />
+			<tx:method name="find*" read-only="true" propagation="NOT_SUPPORTED" />
+			<tx:method name="page*" read-only="true" propagation="NOT_SUPPORTED" />
+			<tx:method name="count*" read-only="true" propagation="NOT_SUPPORTED" />
+			<tx:method name="exists*" read-only="true" propagation="NOT_SUPPORTED" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="videoService"
+			expression="execution(* cn.joe.framework.base.service.*.*(..)) " />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="videoService" />
+	</aop:config>
+	<!-- 注解方式配置事务 end -->
+</beans>

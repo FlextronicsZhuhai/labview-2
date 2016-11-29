@@ -1,0 +1,38 @@
+<resin xmlns="http://caucho.com/ns/resin" xmlns:resin="http://caucho.com/ns/resin/core">
+
+	<log name="" level="info" path="stdout:" />
+
+	<cluster id="app-tier">
+		<!-- includes the app-default for default web-app behavior -->
+		<resin:import path="${PROJECT_PATH}/conf/app-default-myvideo.xml" />
+
+		<server id="" port="6070">
+			<http address="*" port="8090" />
+
+			<!-- - The JVM arguments -->
+			<jvm-arg>-Xmx1024m</jvm-arg>
+			<jvm-arg>-Xss2m</jvm-arg>
+			<jvm-arg>-Xdebug</jvm-arg>
+			<jvm-arg>-Dcom.sun.management.jmxremote</jvm-arg>
+
+		</server>
+
+		<!-- configures the default host, matching any host name -->
+		<host id="" root-directory=".">
+			<!-- <web-app id="/xxx" root-directory=""/> -->
+
+			<!-- joe dir -->
+			<web-app id="/" root-directory="${PROJECT_PATH}\src\main\webapp"
+				lazy-init="false">
+				<prologue>
+					<class-loader>
+						<compiling-loader
+							path="${PROJECT_PATH}\target\maven01\WEB-INF\classes" />
+						<library-loader path="${PROJECT_PATH}\target\maven01\WEB-INF\lib" />
+					</class-loader>
+				</prologue>
+			</web-app>
+		</host>
+
+	</cluster>
+</resin>  
