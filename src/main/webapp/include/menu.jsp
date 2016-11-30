@@ -3,7 +3,7 @@
 <div id="header">
 		<div id="logo">
 			<a id="logo_text" href="/">Labview.help</a>
-			<div id="description">.</div>
+			<div id="description">键盘上，指尖的舞蹈；字母中，跳跃的音符！</div>
 		</div>
 		<div id="header_meta" >
 			<div id="header_search_area">
