@@ -1,118 +1,163 @@
 package com.joe.myvideo.util;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
-import java.util.zip.ZipOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Enumeration;
+import org.apache.tools.zip.ZipEntry;
+import org.apache.tools.zip.ZipFile;
+import org.apache.tools.zip.ZipOutputStream;
+import org.springframework.aop.ThrowsAdvice;
+
+import com.github.junrar.Archive;
+import com.github.junrar.rarfile.FileHeader;
 
 /**
- * 对多个文件压缩和解压缩  
+ * <p>
+ * Title: 解压缩文件
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2010
+ * </p>
+ * <p>
+ * Company: yourcompany
+ * </p>
  * 
- * 
+ * @author yourcompany
+ * @version 1.0
  */
 public class ZipUtil {
-	//private int k = 1;
-	
-	/**
-	 * 压缩文件
-	 * @param zipFileName
-	 * @param inputFile
-	 * @throws Exception
-	 */
-	public static void compress( File inputFile ,String outputZipFileName) throws Exception {
-        //System.out.println("压缩中...");
-        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outputZipFileName));
-        BufferedOutputStream bo = new BufferedOutputStream(out);
-        zip(out, inputFile, inputFile.getName(), bo);
-        bo.close();
-        out.close(); // 输出流关闭
-        //System.out.println("压缩完成");
-    }  
-	
-	private static void zip(ZipOutputStream out, File f, String base,BufferedOutputStream bo) throws Exception { // 方法重载
-		String separator = File.separator;
-        if (f.isDirectory()){
-            File[] fl = f.listFiles(); 
-            if (fl.length == 0){
-            	out.putNextEntry(new ZipEntry(base + separator)); // 创建zip压缩进入点base
-                System.out.println(base + separator);
-            }            for (int i = 0; i < fl.length; i++) {
-                zip(out, fl[i], base + separator + fl[i].getName(), bo); // 递归遍历子文件夹
+    
+
+    /**
+     * 压缩文件
+     * 
+     * @param srcfile
+     *            File[] 需要压缩的文件列表
+     * @param zipfile
+     *            File 压缩后的文件
+     */
+    public static void ZipFiles(java.io.File[] srcfile, java.io.File zipfile) {
+        byte[] buf = new byte[1024];
+        try {
+            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(
+                    zipfile));
+            for (int i = 0; i < srcfile.length; i++) {
+                FileInputStream in = new FileInputStream(srcfile[i]);
+                out.putNextEntry(new ZipEntry(srcfile[i].getName()));
+                String str = srcfile[i].getName();
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+                out.closeEntry();
+                in.close();
             }
-            //System.out.println("第" + k + "次递归");
-            //k++;
-        } else {            
-        	out.putNextEntry(new ZipEntry(base)); // 创建zip压缩进入点base
-            System.out.println(base);
-            FileInputStream in = new FileInputStream(f);
-            BufferedInputStream bi = new BufferedInputStream(in);
-            int b;
-            while ((b = bi.read()) != -1) {
-                bo.write(b); // 将字节流写入当前zip目录
-            }
-            bi.close();
-            in.close(); // 输入流关闭
+            out.close();
+            System.out.println("压缩完成.");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-	
-	/**
-	 * 解压缩
-	 * @param inputZipFileName
-	 * @param outputDir
-	 * @throws Exception
-	 */
-	public static void unCompress(String inputZipFileName, String outputDir) throws Exception {
-        //long startTime=System.currentTimeMillis();  
-        try {  
-            ZipInputStream Zin=new ZipInputStream(new FileInputStream(  
-            		inputZipFileName));//输入源zip路径  
-            BufferedInputStream Bin=new BufferedInputStream(Zin);  
-            File Fout=null;  
-            ZipEntry entry;  
-            try {  
-                while((entry = Zin.getNextEntry())!=null && !entry.isDirectory()){  
-                    Fout=new File(outputDir,entry.getName());  
-                    if(!Fout.exists()){  
-                        (new File(Fout.getParent())).mkdirs();  
-                    }  
-                    FileOutputStream out=new FileOutputStream(Fout);  
-                    BufferedOutputStream Bout=new BufferedOutputStream(out);  
-                    int b;  
-                    while((b=Bin.read())!=-1){  
-                        Bout.write(b);  
-                    }  
-                    Bout.close();  
-                    out.close();  
-                    //System.out.println(Fout+"解压成功");      
-                }  
-                Bin.close();  
-                Zin.close();  
-            } catch (IOException e) {  
-                e.printStackTrace();  
-            }  
-        } catch (FileNotFoundException e) {  
-            e.printStackTrace();  
-        }  
-        //long endTime=System.currentTimeMillis();  
-        //System.out.println("耗费时间： "+(endTime-startTime)+" ms");  
+
+    /**
+     * zip解压缩
+     * 
+     * @param zipfile
+     *            File 需要解压缩的文件
+     * @param descDir
+     *            String 解压后的目标目录
+     */
+    public static void unZipFiles(java.io.File zipfile, String descDir) {
+    	ZipFile zf = null;
+    	try {
+            zf = new ZipFile(zipfile);
+            for (Enumeration<ZipEntry> entries = zf.getEntries(); entries
+                    .hasMoreElements();) {
+                ZipEntry entry = ((ZipEntry) entries.nextElement());
+                String zipEntryName = entry.getName();
+                InputStream in = zf.getInputStream(entry);
+                File file = new File(descDir);
+                if(!file.exists()){
+                	file.mkdirs();
+                }
+                OutputStream out = new FileOutputStream(descDir + zipEntryName);
+                byte[] buf1 = new byte[1024];
+                int len;
+                while ((len = in.read(buf1)) > 0) {
+                    out.write(buf1, 0, len);
+                }
+                in.close();
+                out.close();
+                //System.out.println("解压缩完成.");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("解压失败");
+        }finally {
+        	try {
+				zf.close();
+			} catch (IOException e) {
+				throw new RuntimeException("io流关闭失败");
+			}
+		}
     }
-	
-//	/**
-//     * 测试
-//     * @param args
-//     */
-//    public static void main(String[] args) {
-//    	ZipUtil book = new ZipUtil();        try {
-//            //book.compress(new File("F:pcdlc"),"F:pcdlc.zip");
-//    		//book.unCompress("F:pcdlc.zip", "D:1");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+
+    
+
+    /** 
+    * 根据原始rar路径，解压到指定文件夹下.      
+    * @param srcRarPath 原始rar路径 
+    * @param dstDirectoryPath 解压到的文件夹      
+    */
+    public static void unRarFile(String srcRarPath, String dstDirectoryPath) {
+        if (!srcRarPath.toLowerCase().endsWith(".rar")) {
+            System.out.println("非rar文件！");
+            return;
+        }
+        File dstDiretory = new File(dstDirectoryPath);
+        if (!dstDiretory.exists()) {// 目标目录不存在时，创建该文件夹
+            dstDiretory.mkdirs();
+        }
+        Archive a = null;
+        try {
+            a = new Archive(new File(srcRarPath));
+            if (a != null) {
+                a.getMainHeader().print(); // 打印文件信息.
+                FileHeader fh = a.nextFileHeader();
+                while (fh != null) {
+                    if (fh.isDirectory()) { // 文件夹 
+                        File fol = new File(dstDirectoryPath + File.separator
+                                + fh.getFileNameString());
+                        fol.mkdirs();
+                    } else { // 文件
+                        File out = new File(dstDirectoryPath + File.separator
+                                + fh.getFileNameString().trim());
+                        //System.out.println(out.getAbsolutePath());
+                        try {// 之所以这么写try，是因为万一这里面有了异常，不影响继续解压. 
+                            if (!out.exists()) {
+                                if (!out.getParentFile().exists()) {// 相对路径可能多级，可能需要创建父目录. 
+                                    out.getParentFile().mkdirs();
+                                }
+                                out.createNewFile();
+                            }
+                            FileOutputStream os = new FileOutputStream(out);
+                            a.extractFile(fh, os);
+                            os.close();
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    fh = a.nextFileHeader();
+                }
+                a.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+
 }

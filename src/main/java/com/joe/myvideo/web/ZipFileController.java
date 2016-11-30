@@ -1,12 +1,7 @@
 package com.joe.myvideo.web;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.joe.myvideo.entity.User;
 import com.joe.myvideo.entity.ZipFile;
+import com.joe.myvideo.enums.DecodeStatusEnum;
 import com.joe.myvideo.service.impl.ZipFileServiceImpl;
 import com.joe.myvideo.util.DateUtils;
 import com.joe.myvideo.util.StringUtils;
@@ -72,9 +68,10 @@ public class ZipFileController {
 	        	ZipFile zf = new ZipFile();
 	        	zf.setCreateAt(new Date());
 	        	zf.setUpdateAt(new Date());
-	        	zf.setStatus(ZipFile.WAIT_TO_FIX);
+	        	zf.setStatus(DecodeStatusEnum.WAIT_TO_FIX.getKey());
 	        	zf.setOriginName(fileName);
 	        	zf.setTempName(tempName);
+	        	
 	        	zf.setSize(file.getSize());
 	        	zf.setUserId(user.getId());
 	        	if(zipFileServiceImpl.add(zf) > 0){
@@ -214,12 +211,14 @@ public class ZipFileController {
       int zipId = StringUtils.getInt(req.getParameter("zipId"),0);
       int userId = StringUtils.getInt(req.getParameter("userId"),0);
       User user = (User) session.getAttribute("currentUser");
-      String opera = StringUtils.get(req.getParameter("userId"),null);
+      String opera = StringUtils.get(req.getParameter("opera"),null);
       
       try {
     	  zipFileServiceImpl.operaFile(res, user, zipId, userId, opera);
 		} catch (Exception e) {
+			e.printStackTrace();
 			T.alert(res, "操作失败", location);
 		}
     }
+ 
 }

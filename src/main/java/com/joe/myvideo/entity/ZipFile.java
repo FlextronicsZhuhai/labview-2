@@ -1,20 +1,10 @@
 package com.joe.myvideo.entity;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class ZipFile implements Serializable{
-
-	/**
-	 * 
-	 */
-	public static final int WAIT_TO_FIX = 0;//等候处理
-	public static final int ALREADY_TO_FIX = 1;//已经处理完成
-	public static final int ALREADY_TO_DOWNLOAD = 2;//已经被下载
-	public static final int ALREADY_TO_DATE = 3;//已经过期
-	public static final int IS_ILLEGAL = 4;//不合法文件
-	public static final int CAN_NOT_FIX = 5;//不能解密
-	public static final int ALREADY_TO_DELETE = 6;//已删除
 	
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +20,7 @@ public class ZipFile implements Serializable{
 	
 	private int status;
 	
-	private float size;
+	private long size;
 	
     private Date createAt; 
     private Date updateAt; 
@@ -83,11 +73,11 @@ public class ZipFile implements Serializable{
 		this.status = status;
 	}
 
-	public float getSize() {
+	public long getSize() {
 		return size;
 	}
 
-	public void setSize(float size) {
+	public void setSize(long size) {
 		this.size = size;
 	}
 
@@ -107,6 +97,21 @@ public class ZipFile implements Serializable{
 		this.updateAt = updateAt;
 	}
 	
-	
+	/**
+	 * 格式化文件大小
+	 * @return
+	 */
+    public String getSizeString(){  
+        DecimalFormat df = new DecimalFormat("0.00");  
+        String mysize = "";  
+        if( size > 1024*1024){  
+          mysize = df.format( size / 1024f / 1024f ) +"M";  
+        }else if( size > 1024 ){  
+          mysize = df.format( size / 1024f ) +"K";  
+        }else{  
+          mysize = size + "B";  
+        }  
+        return mysize;  
+    }  
 	
 }

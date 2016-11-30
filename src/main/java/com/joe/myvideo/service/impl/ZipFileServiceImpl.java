@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import com.joe.myvideo.entity.User;
 import com.joe.myvideo.entity.ZipFile;
+import com.joe.myvideo.enums.DecodeStatusEnum;
 import com.joe.myvideo.service.ZipFileService;
 import com.joe.myvideo.util.SysConfig;
 import com.joe.myvideo.util.T;
@@ -146,7 +147,7 @@ public class ZipFileServiceImpl {
 	public void delete(ZipFile zipFile , String path ,HttpServletResponse res) throws Exception{
 		File file=new File(path);
 		if(file.exists()){
-			zipFile.setStatus(ZipFile.ALREADY_TO_DELETE);
+			zipFile.setStatus(DecodeStatusEnum.ALREADY_TO_DELETE.getKey());
 			if(updateStatus(zipFile) > 0){
 				T.alert(res, "删除成功", location);
 			}else{
@@ -162,18 +163,26 @@ public class ZipFileServiceImpl {
 		if(file.exists()){
 			String outputDir = temPath
 					+File.separator
-					+user.getId();
-					
-        	String inputZipFileName = basePath
-			        			+File.separator
-			        			+user.getId()
-			        			+File.separator
-			        			+zipFile.getTempName();
-			ZipUtil.unCompress(inputZipFileName, outputDir+File.separator+zipFile.getOriginName());
-			
-			//TODO 通知php 
+					+user.getId()
+					+File.separator
+					+zipFile.getTempName()
+					+File.separator;
+			try{
+				ZipUtil.unZipFiles(file, outputDir);
+				zipFile.setStatus(DecodeStatusEnum.IS_FIXING.getKey());
+				if(updateStatus(zipFile) > 0){
+					T.alert(res, "正在为你解密,请稍后", location);
+				}else{
+					T.alert(res, "解密失败，请稍后再试", location);
+				}
+				//TODO 通知php 
+			}catch (Exception e) {
+				T.alert(res, "解密失败，请稍后再试", location);
+			}
 		}else{
 			T.alert(res, "文件不存在", location);
 		}
 	}
+	
+
 }

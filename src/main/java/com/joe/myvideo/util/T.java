@@ -22,7 +22,7 @@ public class T {
 	    	res.setCharacterEncoding("utf-8");
 			PrintWriter out = res.getWriter();
 			
-			out.println("<script language=\"javascript\">alert('"+msg+"');"
+			out.println("<script language=\"javascript\">alert(\""+msg+"\");"
 					+ "window.location.href='"+root+location+"'"
 					+ "</script>");
 		} catch (IOException e) {

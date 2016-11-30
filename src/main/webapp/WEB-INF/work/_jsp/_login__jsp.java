@@ -6,6 +6,15 @@ package _jsp;
 import javax.servlet.*;
 import javax.servlet.jsp.*;
 import javax.servlet.http.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.joe.myvideo.service.impl.ZipFileServiceImpl;
+import com.joe.myvideo.entity.ZipFile;
+import java.util.List;
+import com.joe.myvideo.service.ZipFileService;
+import com.joe.myvideo.util.StringUtils;
+import java.util.HashMap;
+import java.util.Map;
+import com.joe.myvideo.entity.User;
 import com.joe.myvideo.util.SysConfig;
 import com.joe.myvideo.util.SpringCtxUtils;
 
@@ -36,9 +45,11 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
       
 String systemName = SysConfig.getConfig("system.systemName");
 String root = SysConfig.getConfig("system.root");
+String email = SysConfig.getConfig("system.email");
 
 request.setAttribute("systemName", systemName);
-request.setAttribute("root", root);
+request.setAttribute("root", root); 
+request.setAttribute("email", email); 
 
       out.write(_jsp_string1, 0, _jsp_string1.length);
       if (_jsp_ImportTag_0 == null) {
@@ -138,6 +149,7 @@ request.setAttribute("root", root);
     super.init(config);
     com.caucho.jsp.TaglibManager manager = webApp.getJspApplicationContext().getTaglibManager();
     manager.addTaglibFunctions(_jsp_functionMap, "c", "http://java.sun.com/jsp/jstl/core");
+    manager.addTaglibFunctions(_jsp_functionMap, "en", "/WEB-INF/enums");
     com.caucho.jsp.PageContextImpl pageContext = new com.caucho.jsp.PageContextImpl(webApp, this);
     _caucho_expr_0 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${requestScope.root }");
     _caucho_expr_1 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${requestScope.msg }");
@@ -161,11 +173,11 @@ request.setAttribute("root", root);
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("login.jsp"), -8399851833569795838L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("login.jsp"), 7319824297715609324L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -1886185392234924169L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), 7536529205141102298L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/G:/joe/20161128/myvideo/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
+    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/E:/joe/tool/git/labview/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tag.rt.core.ImportTag.class, 6027995467445314107L));
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tei.ImportTEI.class, 7046138242264411925L));
@@ -188,10 +200,10 @@ request.setAttribute("root", root);
   private final static char []_jsp_string4;
   private final static char []_jsp_string2;
   static {
-    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
+    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string3 = "/user/login.do\" id=\"signinform\" method=\"post\">\r\n						<div style=\"margin-top: 60px;\">\r\n							<div class=\"field-validation-error\" id=\"validationSummary\" style=\"height:18px;margin-left:48px;\">\r\n								".toCharArray();
     _jsp_string5 = "\r\n	<!-- END #footer -->\r\n</div>\r\n<!-- END #wrapper -->\r\n</body>\r\n\r\n</html>\r\n".toCharArray();
-    _jsp_string1 = "\r\n\r\n\r\n\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\" />\r\n    <meta name=\"robots\" content=\"noarchive\" />\r\n    \r\n    <title>\r\n    \r\n	\u767b\u5165\u5e10\u53f7 - Labview\r\n\r\n</title>\r\n    <link href=\"/css/style.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/icon/180x180.png\" />\r\n    <link rel=\"icon\" sizes=\"192x192\" href=\"/icon/192x192.png\" />\r\n    <!--[if lt IE 7]>\r\n    <link href=\"/css/ie6.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <![endif]-->\r\n    <script src=\"/js/jquery-3.1.1.min.js\" type=\"text/javascript\"></script>\r\n    \r\n    <script src=\"/js/jscript.js\" type=\"text/javascript\"></script>\r\n    \r\n    \r\n<meta content=\"\u767b\u5165labview.help\uff0c\u8d26\u53f7\u767b\u9646\u3001\u767b\u9646\u7ba1\u7406\u6e90\u7801\u6587\u4ef6\u3002\" name=\"description\" />\r\n<meta content=\"\u767b\u5165,labview,labview.help,\u6e90\u7801\u89e3\u7801,\u5bc6\u7801\u7834\u89e3,\u5f00\u6e90\u514d\u8d39\" name=\"keywords\" />\r\n    <script type=\"text/javascript\">\r\n        function submitCheck() {\r\n            $('#error_u').text('');\r\n            $('#error_p').text('');\r\n            if ($('#UserName').val() == '') {\r\n                $('#error_u').text('\u8bf7\u8f93\u5165\u7528\u6237\u540d');\r\n                return false;\r\n            }\r\n            if ($('#Password').val() == '') {\r\n                $('#error_p').text('\u8bf7\u8f93\u5165\u5bc6\u7801');\r\n                return false;\r\n            }\r\n            return true;\r\n        }\r\n        function submit() {\r\n            if (!submitCheck()) return;\r\n            document.getElementById('signinform').submit();\r\n            $(\".box_btn a\").attr('href', 'javascript:void(null)');\r\n        }\r\n    </script>\r\n\r\n    <script type=\"text/javascript\">\r\n        $(document).ready(function () {\r\n            $(\"#wrapper\").append(\"<script type=\\\"text/javascript\\\">window.scrollTo(0, 230);<\\/script>\");\r\n        });\r\n    </script>\r\n\r\n</head>\r\n\r\n<body>\r\n\r\n<div id=\"wrapper\">\r\n	<!-- #header -->\r\n	".toCharArray();
+    _jsp_string1 = "\r\n\r\n\r\n\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\" />\r\n    <meta name=\"robots\" content=\"noarchive\" />\r\n    \r\n    <title>\r\n    \r\n	\u767b\u5165\u5e10\u53f7 - Labview\r\n\r\n</title>\r\n    <link href=\"/css/style.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/img/180x180.png\" />\r\n    <link rel=\"icon\" sizes=\"192x192\" href=\"/img/192x192.png\" />\r\n    <!--[if lt IE 7]>\r\n    <link href=\"/css/ie6.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <![endif]-->\r\n    <script src=\"/js/jquery-3.1.1.min.js\" type=\"text/javascript\"></script>\r\n    \r\n    <script src=\"/js/jscript.js\" type=\"text/javascript\"></script>\r\n    \r\n    \r\n<meta content=\"\u767b\u5165labview.help\uff0c\u8d26\u53f7\u767b\u9646\u3001\u767b\u9646\u7ba1\u7406\u6e90\u7801\u6587\u4ef6\u3002\" name=\"description\" />\r\n<meta content=\"\u767b\u5165,labview,labview.help,\u6e90\u7801\u89e3\u7801,\u5bc6\u7801\u7834\u89e3,\u5f00\u6e90\u514d\u8d39\" name=\"keywords\" />\r\n    <script type=\"text/javascript\">\r\n        function submitCheck() {\r\n            $('#error_u').text('');\r\n            $('#error_p').text('');\r\n            if ($('#UserName').val() == '') {\r\n                $('#error_u').text('\u8bf7\u8f93\u5165\u7528\u6237\u540d');\r\n                return false;\r\n            }\r\n            if ($('#Password').val() == '') {\r\n                $('#error_p').text('\u8bf7\u8f93\u5165\u5bc6\u7801');\r\n                return false;\r\n            }\r\n            return true;\r\n        }\r\n        function submit() {\r\n            if (!submitCheck()) return;\r\n            document.getElementById('signinform').submit();\r\n            $(\".box_btn a\").attr('href', 'javascript:void(null)');\r\n        }\r\n    </script>\r\n\r\n    <script type=\"text/javascript\">\r\n        $(document).ready(function () {\r\n            $(\"#wrapper\").append(\"<script type=\\\"text/javascript\\\">window.scrollTo(0, 230);<\\/script>\");\r\n        });\r\n    </script>\r\n\r\n</head>\r\n\r\n<body>\r\n\r\n<div id=\"wrapper\">\r\n	<!-- #header -->\r\n	".toCharArray();
     _jsp_string4 = "\r\n							</div><br/>\r\n							<label for=\"UserName\">\u7528\u6237\u540d</label><input autofocus=\"autofocus\" id=\"UserName\" name=\"UserName\" type=\"text\" value=\"\" /><span id=\"error_u\"></span><br/>\r\n							<label for=\"Password\">\u5bc6\u7801</label><input id=\"Password\" name=\"Password\" onkeypress=\"if (event.keyCode==13) { submit(); }\" type=\"password\" /><span id=\"error_p\"></span>\r\n                            \r\n						</div>\r\n						<div class=\"box_btn\" style=\"padding-left:24px;\">\r\n							<a class=\"box_btn_s\" id=\"btn_signin\" href=\"javascript:submit();\">\u767b\u5165</a>\r\n                            \r\n                            <a id=\"box_btn_star\" style=\"width:48px;text-decoration:none;\" href=\"/account/signup\">\u6ce8\u518c\u5e10\u53f7</a>\r\n                            \r\n						</div>\r\n                    </form>\r\n                    </div>\r\n                    <div class=\"clear\"></div>\r\n\r\n	                        </div>\r\n	                        <div id=\"box_bottom\"></div>\r\n                        </div>\r\n                        \r\n                    </div>\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n		<div id=\"right_col\">\r\n            \r\n\r\n			\r\n		</div>\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	".toCharArray();
     _jsp_string2 = "\r\n	<script type=\"text/javascript\">\r\n		document.getElementById(\"login\").setAttribute('class','current_page_item');\r\n	</script>\r\n	<!-- #header -->\r\n	<div id=\"contents\" class=\"clearfix\">\r\n		<div id=\"left_col\">\r\n            \r\n                    <div id=\"box\">\r\n                        <h1 class=\"box_title\">\u767b\u5165\u5e10\u53f7 Sign In</h1>\r\n                        <div>\r\n	                        <div id=\"box_top\"></div>\r\n	                        <div id=\"box_body\">\r\n                            \r\n                    <div id=\"box_img\"><img src=\"/img/box_img.png\" alt=\"\" /></div>\r\n					<div id=\"box_content\">\r\n                    <form action=\"".toCharArray();
   }

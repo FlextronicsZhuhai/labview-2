@@ -93,16 +93,16 @@ public class UserController {
 				user.setCreateAt(new Date());
 				user.setStatus(1);
 				
-					int id = userServiceImpl.add(user);
-					if(id > 0){
-						user.setId(id);//注册更新id
-						session.setAttribute("currentUser", userServiceImpl.getUserById(id));
-				    	T.alert(res, "注册成功，欢迎<font color='green'>"+userName+"</font>", "/index.jsp");
-						return null;
-					}else{
-						msg = "注册失败，请重新注册";
-						req.setAttribute("msg", msg);
-					}
+				int id = userServiceImpl.add(user);
+				if(id > 0){
+					user.setId(id);//注册更新id
+					session.setAttribute("currentUser", userServiceImpl.getUserById(id));
+			    	T.alert(res, "注册成功", "/index.jsp");
+					return "index";
+				}else{
+					msg = "注册失败，请重新注册";
+					req.setAttribute("msg", msg);
+				}
 			}
 		}catch (Exception e) {
 			log.error("注册用户发生异常",e);
