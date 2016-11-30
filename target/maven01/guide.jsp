@@ -9,11 +9,11 @@
     <meta name="robots" content="noarchive" />
     
     <title>
-	OpenVPN for Windows - IPv6VPN
+	Labview - 解密使用指南_labview解密支持
 </title>
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icon/180x180.png" />
-    <link rel="icon" sizes="192x192" href="/icon/192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/180x180.png" />
+    <link rel="icon" sizes="192x192" href="/img/192x192.png" />
     <!--[if lt IE 7]>
     <link href="/css/ie6.css" rel="stylesheet" type="text/css" />
     <![endif]-->
@@ -21,7 +21,7 @@
     
     <script src="/js/jscript.js" type="text/javascript"></script>
     
-<meta content="OpenVPN,Win,Windows,IPv6,VPN" name="keywords" />
+<meta content="Labview,labview解密,密码破解,labview学习交流,免费破解" name="keywords" />
 
 </head>
 

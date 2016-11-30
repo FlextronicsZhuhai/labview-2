@@ -33,8 +33,8 @@
             inValidUserName = true;
             $('#error_u').text('');
             var u = $('#UserName').val();
-            if (u.length < 4 || u.length > 16) {
-                $('#error_u').text('长度须为4-16位');
+            if (u.length < 1 || u.length > 11) {
+                $('#error_u').text('长度须为2-10位');
                 return;
             }
             inValidUserName = false;
@@ -158,7 +158,7 @@
 							<div class="field-validation-error" id="validationSummary" style="height:18px;margin-left:48px;">
 								${requestScope.msg }
 							</div><br/>
-							<label for="UserName">用户名</label><input id="UserName" name="UserName" onchange="javascript:checkUserName('')" type="text" value="" /><span id="error_u">字母开头，4-16位</span><br/>
+							<label for="UserName">用户名</label><input id="UserName" name="UserName" onchange="javascript:checkUserName('')" type="text" value="" /><span id="error_u">字母开头，2-10位</span><br/>
 							<label for="Password">密码</label><input id="Password" name="Password" type="password"  onchange="javascript:checkPassword('')"/><span id="error_p">6-12位</span><br/>
 							<label for="ConfirmPassword">确认密码</label><input id="ConfirmPassword" name="ConfirmPassword" type="password" onchange="javascript:checkRePassword('')"/><span id="error_rp"></span><br/>
 							<label for="Email">常用邮箱</label><input id="Email" name="Email" type="text" value="" onchange="javascript:checkEmail('')"/><span id="error_e">用于接收服务通知</span><br/>

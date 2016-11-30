@@ -6,6 +6,15 @@ package _jsp._include;
 import javax.servlet.*;
 import javax.servlet.jsp.*;
 import javax.servlet.http.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.joe.myvideo.service.impl.ZipFileServiceImpl;
+import com.joe.myvideo.entity.ZipFile;
+import java.util.List;
+import com.joe.myvideo.service.ZipFileService;
+import com.joe.myvideo.util.StringUtils;
+import java.util.HashMap;
+import java.util.Map;
+import com.joe.myvideo.entity.User;
 import com.joe.myvideo.util.SysConfig;
 import com.joe.myvideo.util.SpringCtxUtils;
 
@@ -35,9 +44,11 @@ public class _footer__jsp extends com.caucho.jsp.JavaPage
       
 String systemName = SysConfig.getConfig("system.systemName");
 String root = SysConfig.getConfig("system.root");
+String email = SysConfig.getConfig("system.email");
 
 request.setAttribute("systemName", systemName);
-request.setAttribute("root", root);
+request.setAttribute("root", root); 
+request.setAttribute("email", email); 
 
       out.write(_jsp_string1, 0, _jsp_string1.length);
       _caucho_expr_0.print(out, _jsp_env, false);
@@ -97,6 +108,7 @@ request.setAttribute("root", root);
     super.init(config);
     com.caucho.jsp.TaglibManager manager = webApp.getJspApplicationContext().getTaglibManager();
     manager.addTaglibFunctions(_jsp_functionMap, "c", "http://java.sun.com/jsp/jstl/core");
+    manager.addTaglibFunctions(_jsp_functionMap, "en", "/WEB-INF/enums");
     com.caucho.jsp.PageContextImpl pageContext = new com.caucho.jsp.PageContextImpl(webApp, this);
     _caucho_expr_0 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${requestScope.root }");
     _caucho_expr_1 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${requestScope.email}");
@@ -122,7 +134,7 @@ request.setAttribute("root", root);
     com.caucho.vfs.Depend depend;
     depend = new com.caucho.vfs.Depend(appDir.lookup("include/footer.jsp"), -2787139038266739473L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -1886185392234924169L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), 7536529205141102298L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
   private static com.caucho.el.Expr _caucho_expr_0;
@@ -133,7 +145,7 @@ request.setAttribute("root", root);
   private final static char []_jsp_string1;
   private final static char []_jsp_string3;
   static {
-    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
+    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string2 = "\">Labview.help</a></li>\r\n            <li><!-- <a href=\"/tos?s=b\"> -->\u8054\u7cfb\u6211\u4eec\uff1a".toCharArray();
     _jsp_string1 = "\r\n\r\n	<div id=\"footer\">\r\n		<ul id=\"copyright\">\r\n			<li style=\"background: none;\"><a href=\"".toCharArray();
     _jsp_string3 = "<!-- </a> --></li>\r\n            <!-- <li><a href=\"/faq\">FAQ</a></li> -->\r\n			<li><a href=\"http://www.mono-lab.net/\">Theme designed by mono-lab</a></li>\r\n		</ul>\r\n		<a id=\"return_top\" href=\"#wrapper\">Return top</a>\r\n	</div>".toCharArray();

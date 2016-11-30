@@ -1,12 +1,3 @@
-<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
-<%@page import="com.joe.myvideo.service.impl.ZipFileServiceImpl"%>
-<%@page import="com.joe.myvideo.entity.ZipFile"%>
-<%@page import="java.util.List"%>
-<%@page import="com.joe.myvideo.service.ZipFileService"%>
-<%@page import="com.joe.myvideo.util.StringUtils"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.Map"%>
-<%@page import="com.joe.myvideo.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/jspf/import.jsp" %>
 <%
@@ -183,7 +174,7 @@ overflow: hidden; " id="file"/>
         		<table width="100%">
         			<tr>
 	        			<td width="10%">序号</td>
-	        			<td width="40%">文件名</td>
+	        			<td width="30%">文件名</td>
 	        			<td width="15%">大小</td>
 	        			<td width="15%">状态</td>
 	        			<td width="20%">操作</td>
@@ -192,13 +183,12 @@ overflow: hidden; " id="file"/>
 	        			<tr>
 	        				<td>${zip.id }</td>
 	        				<td>${zip.originName }</td>
-	        				<td>${zip.size }</td>
-	        				<td>${zip.status }</td>
+	        				<td>${zip.sizeString }</td>
+	        				<td>${en:getZip(zip.status)}</td>
 	        				<td>
-	        					<a href="${requestScope.root }/zipfile/decode.do?zipId=${zip.id}&userId=${userId}">解密</a>
-	        					<a href="${requestScope.root }/zipfile/download.do?zipId=${zip.id}&userId=${userId}">下载</a>
-	        					<a href="${requestScope.root }/zipfile/delete.do?zipId=${zip.id}&userId=${userId}">删除</a>
-	        					
+	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=decode">解密</a>
+	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=download">下载</a>
+	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=delete">删除</a>
 	        				</td>
 	        			</tr>
         			</c:forEach>
@@ -224,7 +214,7 @@ overflow: hidden; " id="file"/>
 		<div id="right_col">
                     <div class="side_box" style="line-height: 200%;">
                     <h3 class="side_title side_title_f">联系我们 Contact US</h3>
-                    <span style="font-family: Consolas, Monaco, Arial, Helvetica, sans-serif;">Email: contact(at)ipv6vpn.net</span><br />
+                    <span style="font-family: Consolas, Monaco, Arial, Helvetica, sans-serif;">Email: ${requestScope.email }</span><br />
                     </div>
 		</div>
 		<!-- END #right_col -->

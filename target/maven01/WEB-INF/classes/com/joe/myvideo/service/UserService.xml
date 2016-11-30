@@ -17,8 +17,8 @@
 <select id="get" parameterType="com.joe.myvideo.entity.User" resultMap="userList">  
     SELECT * FROM user WHERE username=#{username} AND password=#{password} AND status=#{status}  
 </select>
-<insert id="add" parameterType="com.joe.myvideo.entity.User" flushCache="true" useGeneratedKeys="true" keyProperty="id">  
-   INSERT INTO user (username,password,createAt,updateAt,status) VALUES (#{username},#{password},#{createAt},#{updateAt},#{status})  
+<insert id="add" parameterType="com.joe.myvideo.entity.User" flushCache="true"  keyProperty="id">  
+   INSERT INTO user (username,password,email,createAt,updateAt,status) VALUES (#{username},#{password},#{email},#{createAt},#{updateAt},#{status})  
 </insert>  
 <update id="update" parameterType="com.joe.myvideo.entity.User">  
     UPDATE user SET password=#{password},updateAt=now() WHERE id=#{id}  

@@ -24,7 +24,7 @@
        <if test="status != null">and status &lt; #{status}</if>  
 </select>
 
-<insert id="add" parameterType="com.joe.myvideo.entity.ZipFile" flushCache="true" useGeneratedKeys="true" keyProperty="id">  
+<insert id="add" parameterType="com.joe.myvideo.entity.ZipFile" flushCache="true" keyProperty="id">  
    INSERT INTO ZipFile (userId,originName,tempName,downloadDate,status,size,createAt,updateAt) 
    VALUES (#{userId},#{originName},#{tempName},#{downloadDate},#{status},#{size},#{createAt},#{updateAt})  
 </insert>  

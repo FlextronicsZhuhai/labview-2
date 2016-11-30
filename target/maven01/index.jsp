@@ -10,8 +10,8 @@
 	Labview - 提供labview破解密码_源码密码破解_labview免费解码服务
 	</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icon/180x180.png" />
-    <link rel="icon" sizes="192x192" href="/icon/192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/180x180.png" />
+    <link rel="icon" sizes="192x192" href="/img/192x192.png" />
     <!--[if lt IE 7]>
     <link href="/content/css/ie6.css" rel="stylesheet" type="text/css" />
     <![endif]-->

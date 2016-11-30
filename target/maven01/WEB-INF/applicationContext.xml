@@ -12,7 +12,7 @@
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<bean id="springCtxUtils" class="com.joe.myvideo.util.SpringCtxUtils" />
-	<bean id="sysConfig" class="com.joe.myvideo.framework.base.util.SysConfig" />
+	<bean id="sysConfig" class="com.joe.myvideo.util.SysConfig" />
 
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 		 <!-- 开启注解配置 -->
