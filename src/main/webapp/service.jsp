@@ -4,23 +4,33 @@
 	User user = (User)request.getSession().getAttribute("currentUser");
 	int pageNo = StringUtils.getInt(request.getParameter("pageNo"), 1); 
 	int status = StringUtils.getInt(request.getParameter("status"), 6); 
-	int pageSize = StringUtils.getInt(request.getParameter("pageSize"), 5); 
+	/* int pageSize = StringUtils.getInt(request.getParameter("pageSize"), 5);  */
+	int pageSize = 5;
 	String orderBy = StringUtils.get(request.getParameter("orderBy"), "createAt"); 
 	String order = StringUtils.get(request.getParameter("order"), "desc");
 	if(user != null){
 		int id = user.getId();
 		Map<String,Object> params = new HashMap<String,Object>();
+		ZipFileServiceImpl zipFileService = SpringCtxUtils.getBean(ZipFileServiceImpl.class);
 		params.put("userId", user.getId());
 		params.put("status", status);
+		int total = zipFileService.getTatolCount(params);
+		if(total > 0){
+			int pageCount = total / pageSize + (total % pageSize == 0 ? 0 : 1);
+			if(pageNo > pageCount){
+				pageNo = pageCount;
+			}
+		}
+		
 		params.put("begin", pageSize*(pageNo-1)+1);
 		params.put("end", pageSize*(pageNo-1)+pageSize);
 		//params.put("orderBy", orderBy);
 		params.put("order", order);
-
-		ZipFileServiceImpl zipFileService = SpringCtxUtils.getBean(ZipFileServiceImpl.class);
+		
 		List<ZipFile> zips = zipFileService.pageList(params);
 		pageContext.setAttribute("zips", zips);
 		pageContext.setAttribute("userId", id);
+		pageContext.setAttribute("pageNo", pageNo);
 		
 	}
 %>
@@ -186,19 +196,24 @@ overflow: hidden; " id="file"/>
 	        				<td>${zip.sizeString }</td>
 	        				<td>${en:getZip(zip.status)}</td>
 	        				<td>
-	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=decode">解密</a>
+	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=decode">${zip.status == 1?"刷新":"解密" }</a>
 	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=download">下载</a>
 	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=delete">删除</a>
 	        				</td>
 	        			</tr>
         			</c:forEach>
         		</table>
+        		<c:choose>
+        		
+        		</c:choose>
+        		<a class="before" style="" ${pageNo le 1 ? "" }  href="${requseScope.root }/service.jsp?pageNo=${pageNo-1}">上一页</a>
+        		<a class="after"  href="${requseScope.root }/service.jsp?pageNo=${pageNo+1} ">下一页</a>
         	</div>
         <br />
         <div style="clear:both"></div>
         <h3>说明：</h3>
-        <div style="font-size:10px;">
-        	<ul  style="font-size:12px;list-style-type:none;padding: 0 0 0 28px;">
+        <div>
+        	<ul class="remar">
 				<li>1、解密成功后请在下方下载您的文件</li>
 				<li>2、请选择zip格式的文件，单个文件不可大于50M</li>
 				<li>3、为了节约空间，每位用户仅能同时在服务上保留五个文件。</li>

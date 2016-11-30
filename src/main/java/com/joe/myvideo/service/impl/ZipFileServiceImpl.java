@@ -16,10 +16,13 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.joe.myvideo.entity.User;
 import com.joe.myvideo.entity.ZipFile;
 import com.joe.myvideo.enums.DecodeStatusEnum;
 import com.joe.myvideo.service.ZipFileService;
+import com.joe.myvideo.util.HttpUtils;
+import com.joe.myvideo.util.StringUtils;
 import com.joe.myvideo.util.SysConfig;
 import com.joe.myvideo.util.T;
 import com.joe.myvideo.util.ZipUtil;
@@ -74,6 +77,15 @@ public class ZipFileServiceImpl {
 	 */
 	public int updateStatus(ZipFile zipFile){
 		return zipFileService.updateStatus(zipFile);
+	}
+	
+	/**
+	 * 查询总记录数
+	 * @param zipFile
+	 * @return
+	 */
+	public int getTatolCount(Map<String, Object> params){
+		return zipFileService.getTatolCount(params);
 	}
 	
 	/**
@@ -169,13 +181,32 @@ public class ZipFileServiceImpl {
 					+File.separator;
 			try{
 				ZipUtil.unZipFiles(file, outputDir);
-				zipFile.setStatus(DecodeStatusEnum.IS_FIXING.getKey());
-				if(updateStatus(zipFile) > 0){
-					T.alert(res, "正在为你解密,请稍后", location);
+				
+//				if(updateStatus(zipFile) > 0){
+//					T.alert(res, "正在为你解密,请稍后", location);
+//				}else{
+//					T.alert(res, "解密失败，请稍后再试", location);
+//				}
+				String phpRoot = SysConfig.getConfig("php.root");
+				
+				String result = HttpUtils.sendPost(phpRoot, "path="+outputDir);
+				JSONObject ob = JSONObject.parseObject(result);
+				int status = StringUtils.getInt(ob.get("status")
+						, DecodeStatusEnum.IS_FIXING.getKey());
+				
+				if(status == DecodeStatusEnum.ALREADY_TO_FIX.getKey()){
+					T.alert(res, "解密成功", location);
+				}else if(status == DecodeStatusEnum.CAN_NOT_FIX.getKey()){
+					T.alert(res, "无法解密，请联系管理员", location);
+				}else if(status == DecodeStatusEnum.IS_ILLEGAL.getKey()){
+					T.alert(res, "上传的文件不符合要求，请重试", "/guide.jsp");
+				}else if(status == DecodeStatusEnum.ALREADY_TO_DELETE.getKey()){
+					T.alert(res, "文件不存在", location);
 				}else{
-					T.alert(res, "解密失败，请稍后再试", location);
+					T.alert(res, "正在为你解密，请稍后", location);
 				}
-				//TODO 通知php 
+				zipFile.setStatus(status);
+				zipFileService.updateStatus(zipFile);
 			}catch (Exception e) {
 				T.alert(res, "解密失败，请稍后再试", location);
 			}
@@ -183,6 +214,5 @@ public class ZipFileServiceImpl {
 			T.alert(res, "文件不存在", location);
 		}
 	}
-	
 
 }

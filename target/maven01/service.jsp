@@ -10,17 +10,26 @@
 	if(user != null){
 		int id = user.getId();
 		Map<String,Object> params = new HashMap<String,Object>();
+		ZipFileServiceImpl zipFileService = SpringCtxUtils.getBean(ZipFileServiceImpl.class);
 		params.put("userId", user.getId());
 		params.put("status", status);
+		int total = zipFileService.getTatolCount(params);
+		if(total > 0){
+			int pageCount = total / pageSize + (total % pageSize == 0 ? 0 : 1);
+			if(pageNo > pageCount){
+				pageNo = pageCount;
+			}
+		}
+		
 		params.put("begin", pageSize*(pageNo-1)+1);
 		params.put("end", pageSize*(pageNo-1)+pageSize);
 		//params.put("orderBy", orderBy);
 		params.put("order", order);
-
-		ZipFileServiceImpl zipFileService = SpringCtxUtils.getBean(ZipFileServiceImpl.class);
+		
 		List<ZipFile> zips = zipFileService.pageList(params);
 		pageContext.setAttribute("zips", zips);
 		pageContext.setAttribute("userId", id);
+		pageContext.setAttribute("pageNo", pageNo);
 		
 	}
 %>
@@ -186,13 +195,14 @@ overflow: hidden; " id="file"/>
 	        				<td>${zip.sizeString }</td>
 	        				<td>${en:getZip(zip.status)}</td>
 	        				<td>
-	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=decode">解密</a>
+	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=decode">${zip.status == 1?"刷新":"解密" }</a>
 	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=download">下载</a>
 	        					<a href="${requestScope.root }/zipfile/opera.do?zipId=${zip.id}&userId=${userId}&opera=delete">删除</a>
 	        				</td>
 	        			</tr>
         			</c:forEach>
         		</table>
+        		<p style="margin-bottom: 0px">上一页</p>
         	</div>
         <br />
         <div style="clear:both"></div>

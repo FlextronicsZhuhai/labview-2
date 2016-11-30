@@ -12,4 +12,6 @@ public interface ZipFileService extends BaseService<ZipFile> {
 	public ZipFile getByCondition(Map<String, Object> params);
 	
 	public int updateStatus(ZipFile zipFile);
+	
+	public int getTatolCount(Map<String, Object> params);
 }

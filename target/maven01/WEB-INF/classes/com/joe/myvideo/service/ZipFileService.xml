@@ -47,6 +47,11 @@
        	<if test="begin > 0 and end > 0">limit #{begin} , #{end}</if>    
 </select> 
 
+<select id="getTatolCount" parameterType="java.util.Map" >
+	SELECT count(1) FROM zipFile WHERE 1=1
+	    <if test="userId > 0">and userId=#{userId}</if>  
+       	<if test="status > 0">and status  &lt; #{status}</if> 
+</select>
 
 
  

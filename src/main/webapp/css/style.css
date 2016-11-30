@@ -386,3 +386,32 @@ object { display:block; margin:0 auto; }
 #package a{
 	margin-right: 8px;
 }
+
+
+
+
+
+
+
+
+
+.before{
+	bottom: 0px;
+	position: absolute;
+	left: 200px
+}
+.after{
+	bottom: 0px;
+	position: absolute;
+	right: 200px
+}
+
+
+.remar{
+	font-size:12px;
+	list-style-type:none;
+	padding: 0 0 0 28px;
+	font-size:11px;
+}
+
+
