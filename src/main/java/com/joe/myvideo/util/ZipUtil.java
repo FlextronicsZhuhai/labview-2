@@ -80,11 +80,11 @@ public class ZipUtil {
                 ZipEntry entry = ((ZipEntry) entries.nextElement());
                 String zipEntryName = entry.getName();
                 InputStream in = zf.getInputStream(entry);
-                File file = new File(descDir);
+                File file = new File(descDir,zipEntryName);
                 if(!file.exists()){
-                	file.mkdirs();
+                	(new File(file.getParent())).mkdirs(); 
                 }
-                OutputStream out = new FileOutputStream(descDir + zipEntryName);
+                OutputStream out = new FileOutputStream(file);
                 byte[] buf1 = new byte[1024];
                 int len;
                 while ((len = in.read(buf1)) > 0) {
@@ -95,7 +95,8 @@ public class ZipUtil {
                 //System.out.println("解压缩完成.");
             }
         } catch (IOException e) {
-            throw new RuntimeException("解压失败");
+        	
+            throw new RuntimeException("解压失败",e);
         }finally {
         	try {
 				zf.close();

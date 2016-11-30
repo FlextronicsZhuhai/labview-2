@@ -112,6 +112,7 @@ request.setAttribute("email", email);
     super.init(config);
     com.caucho.jsp.TaglibManager manager = webApp.getJspApplicationContext().getTaglibManager();
     manager.addTaglibFunctions(_jsp_functionMap, "c", "http://java.sun.com/jsp/jstl/core");
+    manager.addTaglibFunctions(_jsp_functionMap, "fn", "http://java.sun.com/jsp/jstl/functions");
     manager.addTaglibFunctions(_jsp_functionMap, "en", "/WEB-INF/enums");
     com.caucho.jsp.PageContextImpl pageContext = new com.caucho.jsp.PageContextImpl(webApp, this);
     _caucho_expr_0 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${root }");
@@ -137,23 +138,23 @@ request.setAttribute("email", email);
     com.caucho.vfs.Depend depend;
     depend = new com.caucho.vfs.Depend(appDir.lookup("include/menu.jsp"), 1974802514033345985L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), 7536529205141102298L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -2379442732689387975L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
   private static com.caucho.el.Expr _caucho_expr_0;
 
   private final static char []_jsp_string2;
-  private final static char []_jsp_string0;
   private final static char []_jsp_string4;
   private final static char []_jsp_string1;
   private final static char []_jsp_string5;
+  private final static char []_jsp_string0;
   private final static char []_jsp_string3;
   static {
     _jsp_string2 = "/service.jsp\">\u89e3\u5bc6\u670d\u52a1</a>\r\n		            <li id=\"register\"><a href=\"".toCharArray();
-    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string4 = "/guide.jsp\">\u4f7f\u7528\u6307\u5357</a>\r\n		            <li id=\"login\"><a href=\"".toCharArray();
     _jsp_string1 = "\r\n\r\n<div id=\"header\">\r\n		<div id=\"logo\">\r\n			<a id=\"logo_text\" href=\"/\">Labview.help</a>\r\n			<div id=\"description\">.</div>\r\n		</div>\r\n		<div id=\"header_meta\" >\r\n			<div id=\"header_search_area\">\r\n				<form id=\"searchform\" action=\"#\" method=\"get\">\r\n					<div>\r\n						<input id=\"search_input\" name=\"s\" onfocus=\"this.value=''; changefc('#333');\" type=\"text\" value=\"Search\" /></div>\r\n					<div>\r\n						<input id=\"search_button\" alt=\"Search from this blog.\" src=\"/img/search_button.gif\" title=\"Search from this blog.\" type=\"image\" /></div>\r\n				</form>\r\n			</div>\r\n<!-- JiaThis Button BEGIN -->\r\n\r\n<div class=\"jiathis_style_32x32\" style=\"position: relative;float: left;\">\r\n	<a class=\"jiathis_button_tsina\"></a>\r\n	<a class=\"jiathis_button_weixin\"></a>\r\n	<a class=\"jiathis_button_douban\"></a>\r\n	<a href=\"http://www.jiathis.com/share\" class=\"jiathis jiathis_txt jtico jtico_jiathis\" target=\"_blank\"></a>\r\n</div>\r\n<script type=\"text/javascript\" src=\"http://v3.jiathis.com/code_mini/jia.js\" charset=\"utf-8\"></script>\r\n<!-- JiaThis Button END -->\r\n		</div>\r\n		\r\n            <!-- END #header_meta -->\r\n            <div class=\"header_menu\">\r\n	            <ul id=\"menu\" class=\"menu\">\r\n		            <li id=\"index\"><a href=\"/\">\u9996\u9875</a></li>\r\n                    <li id=\"service\"><a href=\"".toCharArray();
     _jsp_string5 = "/login.jsp\">\u6211\u7684\u8d26\u53f7</a></li>\r\n	            </ul>\r\n            </div>\r\n            <!-- END #header_menu -->\r\n	</div>".toCharArray();
+    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string3 = "/register.jsp\">\u6ce8\u518c\u8d26\u53f7</a></li>\r\n		            <li id=\"guide\"><a href=\"".toCharArray();
   }
 }

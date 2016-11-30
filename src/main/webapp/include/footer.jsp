@@ -3,7 +3,7 @@
 	<div id="footer">
 		<ul id="copyright">
 			<li style="background: none;"><a href="${requestScope.root }">Labview.help</a></li>
-            <li><!-- <a href="/tos?s=b"> -->联系我们：${requestScope.email}<!-- </a> --></li>
+            <li><!-- <a href="/tos?s=b"> --><a>联系我们：${requestScope.email}<a><!-- </a> --></li>
             <!-- <li><a href="/faq">FAQ</a></li> -->
 			<li><a href="http://www.mono-lab.net/">Theme designed by mono-lab</a></li>
 		</ul>

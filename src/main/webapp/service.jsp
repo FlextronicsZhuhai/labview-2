@@ -17,12 +17,13 @@
 		int total = zipFileService.getTatolCount(params);
 		if(total > 0){
 			int pageCount = total / pageSize + (total % pageSize == 0 ? 0 : 1);
+			pageContext.setAttribute("pageCount", pageCount);
 			if(pageNo > pageCount){
 				pageNo = pageCount;
 			}
 		}
 		
-		params.put("begin", pageSize*(pageNo-1)+1);
+		params.put("begin", pageSize*(pageNo-1));
 		params.put("end", pageSize*(pageNo-1)+pageSize);
 		//params.put("orderBy", orderBy);
 		params.put("order", order);
@@ -31,6 +32,7 @@
 		pageContext.setAttribute("zips", zips);
 		pageContext.setAttribute("userId", id);
 		pageContext.setAttribute("pageNo", pageNo);
+		
 		
 	}
 %>
@@ -204,10 +206,13 @@ overflow: hidden; " id="file"/>
         			</c:forEach>
         		</table>
         		<c:choose>
-        		
+        			<c:when test="${pageNo lt 1}"><font class="before">上一页</font></c:when>
+        			<c:when test="${pageNo gt 1}"><a class="before" href="${requseScope.root }/service.jsp?pageNo=${pageNo-1}">上一页</a></c:when>
+        			<c:when test="${pageNo gt pageCount}"><font class="before">下一页</font></c:when>
+        			<c:when test="${pageNo lt pageCount}"><a class="before" href="${requseScope.root }/service.jsp?pageNo=${pageNo+1}">下一页</a></c:when>
         		</c:choose>
-        		<a class="before" style="" ${pageNo le 1 ? "" }  href="${requseScope.root }/service.jsp?pageNo=${pageNo-1}">上一页</a>
-        		<a class="after"  href="${requseScope.root }/service.jsp?pageNo=${pageNo+1} ">下一页</a>
+        		
+        		<a class="after"  href="${requseScope.root }/service.jsp?pageNo=${pageNo+1} "></a>
         	</div>
         <br />
         <div style="clear:both"></div>

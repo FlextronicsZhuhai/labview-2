@@ -124,7 +124,7 @@ public class ZipFileServiceImpl {
         	}
         }else{
         	if(user == null){
-        		T.alert(res, "你尚未登录", location);
+        		T.alert(res, "你尚未登录", "/login.jsp");
         	}else {
         		T.alert(res, "参数有误，下载失败", location);
         	}
@@ -190,24 +190,27 @@ public class ZipFileServiceImpl {
 				String phpRoot = SysConfig.getConfig("php.root");
 				
 				String result = HttpUtils.sendPost(phpRoot, "path="+outputDir);
-				JSONObject ob = JSONObject.parseObject(result);
-				int status = StringUtils.getInt(ob.get("status")
-						, DecodeStatusEnum.IS_FIXING.getKey());
-				
-				if(status == DecodeStatusEnum.ALREADY_TO_FIX.getKey()){
-					T.alert(res, "解密成功", location);
-				}else if(status == DecodeStatusEnum.CAN_NOT_FIX.getKey()){
-					T.alert(res, "无法解密，请联系管理员", location);
-				}else if(status == DecodeStatusEnum.IS_ILLEGAL.getKey()){
-					T.alert(res, "上传的文件不符合要求，请重试", "/guide.jsp");
-				}else if(status == DecodeStatusEnum.ALREADY_TO_DELETE.getKey()){
-					T.alert(res, "文件不存在", location);
+				if(!StringUtils.isBlank(result)){
+					JSONObject ob = JSONObject.parseObject(result);
+					int status = StringUtils.getInt(ob.get("status")
+							, DecodeStatusEnum.IS_FIXING.getKey());
+					
+					if(status == DecodeStatusEnum.ALREADY_TO_FIX.getKey()){
+						T.alert(res, "解密成功", location);
+					}else if(status == DecodeStatusEnum.CAN_NOT_FIX.getKey()){
+						T.alert(res, "无法解密，请联系管理员", location);
+					}else if(status == DecodeStatusEnum.IS_ILLEGAL.getKey()){
+						T.alert(res, "上传的文件不符合要求，请重试", "/guide.jsp");
+					}else if(status == DecodeStatusEnum.ALREADY_TO_DELETE.getKey()){
+						T.alert(res, "文件不存在", location);
+					}
+					zipFile.setStatus(status);
+					zipFileService.updateStatus(zipFile);
 				}else{
 					T.alert(res, "正在为你解密，请稍后", location);
 				}
-				zipFile.setStatus(status);
-				zipFileService.updateStatus(zipFile);
 			}catch (Exception e) {
+				log.error("解密失败" ,e);
 				T.alert(res, "解密失败，请稍后再试", location);
 			}
 		}else{
