@@ -43,8 +43,9 @@
             
 
                 <div class="post" style="line-height: 200%;">
-                    <div><b><a style="color:#369;" href="http://test-ipv6.com/" title="点此检测IPv6地址" target="_blank">已经接入IPv6网络？</a>如果是，那么注册一个帐号，三分钟搞定配置，就能像宽带一样方便上网了。</b></div>
-                    <div style="margin-top: 12px;">具体来说，IPv6VPN 是基于 OpenVPN、利用 IPv6 访问全球v4网络的上网解决方案，适合已接入 IPv6 网络的高校学生、教师和科研单位。同时也提供 IPv4 接入，适合电信、联通、移动等宽带或手机用户。</div>
+                    <div>
+                    	<img src="/img/index_focuse.jpeg" alt="labview.help解密服务" width="100%"/>
+                    </div>
                     <h3>哪些用户适合使用 IPv6VPN 的服务？</h3>
                     <ol>
                         <li>已接入 IPv6 网络，但需要办理宽带、购买流量才能上网的高校学生。使用 IPv6VPN 的服务代替宽带上网，可以节省每月上网费用的开支，并提高国外网站访问速度。</li>
