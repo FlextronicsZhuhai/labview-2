@@ -85,7 +85,7 @@ request.setAttribute("email", email);
         _jsp_ImportTag_0.setParent((javax.servlet.jsp.tagext.Tag) null);
       }
 
-      _jsp_ImportTag_0.setUrl("/include/footer.jsp");
+      _jsp_ImportTag_0.setUrl("/include/right.jsp");
       javax.servlet.jsp.JspWriter _jsp_writer6 = out;
       try {
         _jsp_ImportTag_0.doStartTag();
@@ -98,6 +98,25 @@ request.setAttribute("email", email);
         _jsp_ImportTag_0.doFinally();
       }
       out.write(_jsp_string7, 0, _jsp_string7.length);
+      if (_jsp_ImportTag_0 == null) {
+        _jsp_ImportTag_0 = new org.apache.taglibs.standard.tag.rt.core.ImportTag();
+        _jsp_ImportTag_0.setPageContext(pageContext);
+        _jsp_ImportTag_0.setParent((javax.servlet.jsp.tagext.Tag) null);
+      }
+
+      _jsp_ImportTag_0.setUrl("/include/footer.jsp");
+      javax.servlet.jsp.JspWriter _jsp_writer11 = out;
+      try {
+        _jsp_ImportTag_0.doStartTag();
+        _jsp_ImportTag_0.doEndTag();
+      } catch (Throwable _jsp_exn_14) {
+        pageContext.setWriter(_jsp_writer11);
+        out = _jsp_writer11;
+        _jsp_ImportTag_0.doCatch(_jsp_exn_14);
+      } finally {
+        _jsp_ImportTag_0.doFinally();
+      }
+      out.write(_jsp_string8, 0, _jsp_string8.length);
     } catch (java.lang.Throwable _jsp_e) {
       pageContext.handlePageException(_jsp_e);
     } finally {
@@ -153,6 +172,7 @@ request.setAttribute("email", email);
     super.init(config);
     com.caucho.jsp.TaglibManager manager = webApp.getJspApplicationContext().getTaglibManager();
     manager.addTaglibFunctions(_jsp_functionMap, "c", "http://java.sun.com/jsp/jstl/core");
+    manager.addTaglibFunctions(_jsp_functionMap, "fn", "http://java.sun.com/jsp/jstl/functions");
     manager.addTaglibFunctions(_jsp_functionMap, "en", "/WEB-INF/enums");
     com.caucho.jsp.PageContextImpl pageContext = new com.caucho.jsp.PageContextImpl(webApp, this);
     _caucho_expr_0 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${requestScope.systemName }");
@@ -179,11 +199,11 @@ request.setAttribute("email", email);
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("register.jsp"), -6069649669127939452L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("register.jsp"), 1320512448324993144L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), 7536529205141102298L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -2379442732689387975L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/E:/joe/tool/git/labview/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
+    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/C:/Users/zhoucijoe/git/labview/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tag.rt.core.ImportTag.class, 6027995467445314107L));
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tei.ImportTEI.class, 7046138242264411925L));
@@ -203,20 +223,22 @@ request.setAttribute("email", email);
 
   private final static char []_jsp_string1;
   private final static char []_jsp_string3;
-  private final static char []_jsp_string0;
   private final static char []_jsp_string4;
-  private final static char []_jsp_string6;
-  private final static char []_jsp_string7;
+  private final static char []_jsp_string8;
+  private final static char []_jsp_string0;
   private final static char []_jsp_string2;
+  private final static char []_jsp_string7;
   private final static char []_jsp_string5;
+  private final static char []_jsp_string6;
   static {
     _jsp_string1 = "\r\n\r\n\r\n\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\" />\r\n    <meta name=\"robots\" content=\"noarchive\" />\r\n    \r\n    <title>\r\n    \u6ce8\u518c\u5e10\u53f7 - ".toCharArray();
     _jsp_string3 = "/user/checkusername.do', { \"userName\" : u }, function (data) {\r\n                if (data == '1') {\r\n                    userExists = true;\r\n                    $('#error_u').text('\u8be5\u7528\u6237\u540d\u5df2\u6ce8\u518c');\r\n                }\r\n                else if (data == '2') {\r\n                    inValidUserName = true;\r\n                    $('#error_u').text('\u683c\u5f0f\u4e0d\u6b63\u786e');\r\n                }\r\n                else if (data == '3') {\r\n                    tryLater = true;\r\n                    $('#error_u').text('\u8bf7\u7a0d\u540e\u518d\u8bd5');\r\n                }\r\n                else { $('#error_u').text('\u7528\u6237\u540d\u53ef\u7528'); }\r\n            });\r\n        }\r\n        var inValidPassword =false;\r\n        function checkPassword() {\r\n        	$('#error_p').text('');\r\n        	var p = $('#Password').val();\r\n        	var pattern = /^[a-zA-Z0-9_]{6,12}$/;\r\n        	\r\n        	inValidPassword =false;\r\n        	if (!pattern.test(p)) {\r\n        		inValidPassword = true;\r\n        		$('#error_p').text('\u5bc6\u7801\u683c\u5f0f\u4e0d\u6b63\u786e');\r\n            }else{\r\n            	$('#error_p').text('\u5bc6\u7801\u683c\u5f0f\u6b63\u786e');\r\n            }\r\n        }\r\n        var inValidEmail = false;\r\n        function checkEmail() {\r\n        	$('#error_e').text('');\r\n        	var p = $('#Email').val();\r\n        	var pattern = /\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}/;\r\n        	\r\n        	inValidEmail = false;\r\n        	if (!pattern.test(p)) {\r\n        		inValidEmail = true;\r\n        		$('#error_e').text('\u90ae\u7bb1\u683c\u5f0f\u4e0d\u6b63\u786e');\r\n            }else{\r\n            	$('#error_e').text('\u90ae\u7bb1\u683c\u5f0f\u6b63\u786e');\r\n            }\r\n        }\r\n        \r\n        function checkRePassword() {\r\n        	if ($('#ConfirmPassword').val() != $('#Password').val()) { \r\n        		$('#error_rp').text('\u5bc6\u7801\u4e0d\u4e00\u81f4');\r\n        	}else{\r\n        		$('#error_rp').text('\u5bc6\u7801\u4e00\u81f4');\r\n        	}\r\n        }\r\n\r\n        function submitCheck() {\r\n            clearErrors();\r\n\r\n            if ($('#UserName').val() == '') { addError('\u8bf7\u8f93\u5165\u7528\u6237\u540d'); return false; }\r\n            if (inValidUserName) { addError('\u7528\u6237\u540d\u683c\u5f0f\u4e0d\u6b63\u786e'); return false; }\r\n            if (userExists) { addError('\u8be5\u7528\u6237\u540d\u5df2\u6ce8\u518c'); return false; }\r\n            if (tryLater) { addError('\u8bf7\u7a0d\u540e\u518d\u8bd5'); return false; }\r\n            if ($('#Password').val() == '') { addError('\u8bf7\u8f93\u5165\u5bc6\u7801'); return false; }\r\n            if (inValidPassword) { $('#error_p').text('\u5bc6\u7801\u683c\u5f0f\u4e0d\u6b63\u786e'); return false; }\r\n            if ($('#ConfirmPassword').val() != $('#Password').val()) { addError('\u4e24\u6b21\u8f93\u5165\u7684\u5bc6\u7801\u4e0d\u4e00\u81f4'); return false; }\r\n            if ($('#Email').val() == '') { addError('\u8bf7\u8f93\u5165\u5e38\u7528\u90ae\u7bb1'); return false; }\r\n            if (inValidEmail) { $('#error_e').text('\u90ae\u7bb1\u683c\u5f0f\u4e0d\u6b63\u786e'); return false; }\r\n            return true;\r\n        }\r\n        function submit() {\r\n            if (!submitCheck()) return;\r\n            document.getElementById('signupform').submit();\r\n            $(\".box_btn a\").attr('href', 'javascript:void(null)');\r\n        }\r\n        function clearFields() {\r\n            var key = $('#signup_step2 input').first().val();\r\n            $('#signup_step2 input').val('');\r\n            $('#signup_step2 input').first().val(key);\r\n        }\r\n\r\n    </script>\r\n\r\n    <script type=\"text/javascript\">\r\n        $(document).ready(function () {\r\n            $(\"#wrapper\").append(\"<script type=\\\"text/javascript\\\">window.scrollTo(0, 230);<\\/script>\");\r\n        });\r\n    </script>\r\n\r\n</head>\r\n\r\n<body>\r\n\r\n<div id=\"wrapper\">\r\n	<!-- #header -->\r\n	".toCharArray();
-    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string4 = "\r\n	<script type=\"text/javascript\">\r\n		document.getElementById(\"register\").setAttribute('class','current_page_item');\r\n	</script>\r\n	<!-- #header -->\r\n	<div id=\"contents\" class=\"clearfix\">\r\n		<div id=\"left_col\">\r\n            \r\n                    <div id=\"box\">\r\n                        <h1 class=\"box_title\">\u6ce8\u518c\u5e10\u53f7 Sign Up</h1>\r\n                        <div>\r\n	                        <div id=\"box_top\"></div>\r\n	                        <div id=\"box_body\">\r\n                            \r\n                    <form action=\"".toCharArray();
-    _jsp_string6 = "\r\n							</div><br/>\r\n							<label for=\"UserName\">\u7528\u6237\u540d</label><input id=\"UserName\" name=\"UserName\" onchange=\"javascript:checkUserName('')\" type=\"text\" value=\"\" /><span id=\"error_u\">\u5b57\u6bcd\u5f00\u5934\uff0c2-10\u4f4d</span><br/>\r\n							<label for=\"Password\">\u5bc6\u7801</label><input id=\"Password\" name=\"Password\" type=\"password\"  onchange=\"javascript:checkPassword('')\"/><span id=\"error_p\">6-12\u4f4d</span><br/>\r\n							<label for=\"ConfirmPassword\">\u786e\u8ba4\u5bc6\u7801</label><input id=\"ConfirmPassword\" name=\"ConfirmPassword\" type=\"password\" onchange=\"javascript:checkRePassword('')\"/><span id=\"error_rp\"></span><br/>\r\n							<label for=\"Email\">\u5e38\u7528\u90ae\u7bb1</label><input id=\"Email\" name=\"Email\" type=\"text\" value=\"\" onchange=\"javascript:checkEmail('')\"/><span id=\"error_e\">\u7528\u4e8e\u63a5\u6536\u670d\u52a1\u901a\u77e5</span><br/>\r\n						</div>\r\n\r\n						<div class=\"box_btn\" style=\"margin-left:48px;\">\r\n							<a class=\"box_btn_s\" href=\"javascript:submit();\">\u63d0\u4ea4</a>\r\n							<a class=\"box_btn_c\" href=\"javascript:clearFields();\">\u6e05\u7a7a</a>\r\n						</div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"clear\"></div>\r\n                    </form>\r\n	                        </div>\r\n	                        <div id=\"box_bottom\"></div>\r\n                        </div>\r\n                        \r\n                    </div>\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n		<div id=\"right_col\">\r\n            \r\n\r\n			\r\n		</div>\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	".toCharArray();
-    _jsp_string7 = "\r\n	<!-- END #footer -->\r\n</div>\r\n<!-- END #wrapper -->\r\n</body>\r\n\r\n</html>\r\n".toCharArray();
+    _jsp_string8 = "\r\n	<!-- END #footer -->\r\n</div>\r\n<!-- END #wrapper -->\r\n</body>\r\n\r\n</html>\r\n".toCharArray();
+    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string2 = "\r\n</title>\r\n    <link href=\"/css/style.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/img/180x180.png\" />\r\n    <link rel=\"icon\" sizes=\"192x192\" href=\"/img/192x192.png\" />\r\n    <!--[if lt IE 7]>\r\n    <link href=\"/content/css/ie6.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <![endif]-->\r\n    <script src=\"/js/jquery-3.1.1.min.js\" type=\"text/javascript\"></script>\r\n    <script src=\"/js/jscript.js\" type=\"text/javascript\"></script>\r\n    \r\n    \r\n<meta content=\"\u6ce8\u518c\u5e10\u53f7\u4f7f\u7528IPv6VPN\u7684\u670d\u52a1\u3002IPv6VPN\u662f\u57fa\u4e8eOpenVPN\u3001\u5229\u7528IPv6\u8bbf\u95ee\u5168\u7403v4\u7f51\u7edc\u7684\u89e3\u51b3\u65b9\u6848\uff0c\u9002\u5408\u62e5\u6709IPv6\u7f51\u7edc\u73af\u5883\u7684\u9ad8\u6821\u5b66\u751f\u3001\u6559\u5e08\u548c\u79d1\u7814\u5355\u4f4d\u3002\" name=\"description\" />\r\n<meta content=\"\u6ce8\u518c,\u5e10\u53f7,IPv6,VPN,EDU,\u6559\u80b2\u7f51,OpenVPN,PPTP\" name=\"keywords\" />\r\n    <script type=\"text/javascript\">\r\n        var userExists = false;\r\n        var inValidUserName = false;\r\n        var tryLater = false;\r\n\r\n        \r\n        function checkUserName() {\r\n            inValidUserName = true;\r\n            $('#error_u').text('');\r\n            var u = $('#UserName').val();\r\n            if (u.length < 1 || u.length > 11) {\r\n                $('#error_u').text('\u957f\u5ea6\u987b\u4e3a2-10\u4f4d');\r\n                return;\r\n            }\r\n            inValidUserName = false;\r\n            userExists = false;\r\n            tryLater = false;\r\n            $.post('".toCharArray();
+    _jsp_string7 = "\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	".toCharArray();
     _jsp_string5 = "/user/register.do\" id=\"signupform\" method=\"post\">\r\n                    <div id=\"box_img_s\">\r\n                        \r\n                        <img src=\"/img/box_img.png\" alt=\"\" />\r\n                        \r\n                    </div>\r\n					<div id=\"box_content\">\r\n                        <div id=\"signup_step2\">\r\n						<div style=\"margin-top: 40px;\">\r\n							<div class=\"field-validation-error\" id=\"validationSummary\" style=\"height:18px;margin-left:48px;\">\r\n								".toCharArray();
+    _jsp_string6 = "\r\n							</div><br/>\r\n							<label for=\"UserName\">\u7528\u6237\u540d</label><input id=\"UserName\" name=\"UserName\" onchange=\"javascript:checkUserName('')\" type=\"text\" value=\"\" /><span id=\"error_u\">\u5b57\u6bcd\u5f00\u5934\uff0c2-10\u4f4d</span><br/>\r\n							<label for=\"Password\">\u5bc6\u7801</label><input id=\"Password\" name=\"Password\" type=\"password\"  onchange=\"javascript:checkPassword('')\"/><span id=\"error_p\">6-12\u4f4d</span><br/>\r\n							<label for=\"ConfirmPassword\">\u786e\u8ba4\u5bc6\u7801</label><input id=\"ConfirmPassword\" name=\"ConfirmPassword\" type=\"password\" onchange=\"javascript:checkRePassword('')\"/><span id=\"error_rp\"></span><br/>\r\n							<label for=\"Email\">\u5e38\u7528\u90ae\u7bb1</label><input id=\"Email\" name=\"Email\" type=\"text\" value=\"\" onchange=\"javascript:checkEmail('')\"/><span id=\"error_e\">\u7528\u4e8e\u63a5\u6536\u670d\u52a1\u901a\u77e5</span><br/>\r\n						</div>\r\n\r\n						<div class=\"box_btn\" style=\"margin-left:48px;\">\r\n							<a class=\"box_btn_s\" href=\"javascript:submit();\">\u63d0\u4ea4</a>\r\n							<a class=\"box_btn_c\" href=\"javascript:clearFields();\">\u6e05\u7a7a</a>\r\n						</div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"clear\"></div>\r\n                    </form>\r\n	                        </div>\r\n	                        <div id=\"box_bottom\"></div>\r\n                        </div>\r\n                        \r\n                    </div>\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n		".toCharArray();
   }
 }

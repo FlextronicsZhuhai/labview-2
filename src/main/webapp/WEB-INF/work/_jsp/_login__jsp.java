@@ -81,7 +81,7 @@ request.setAttribute("email", email);
         _jsp_ImportTag_0.setParent((javax.servlet.jsp.tagext.Tag) null);
       }
 
-      _jsp_ImportTag_0.setUrl("/include/footer.jsp");
+      _jsp_ImportTag_0.setUrl("/include/right.jsp");
       javax.servlet.jsp.JspWriter _jsp_writer6 = out;
       try {
         _jsp_ImportTag_0.doStartTag();
@@ -94,6 +94,25 @@ request.setAttribute("email", email);
         _jsp_ImportTag_0.doFinally();
       }
       out.write(_jsp_string5, 0, _jsp_string5.length);
+      if (_jsp_ImportTag_0 == null) {
+        _jsp_ImportTag_0 = new org.apache.taglibs.standard.tag.rt.core.ImportTag();
+        _jsp_ImportTag_0.setPageContext(pageContext);
+        _jsp_ImportTag_0.setParent((javax.servlet.jsp.tagext.Tag) null);
+      }
+
+      _jsp_ImportTag_0.setUrl("/include/footer.jsp");
+      javax.servlet.jsp.JspWriter _jsp_writer11 = out;
+      try {
+        _jsp_ImportTag_0.doStartTag();
+        _jsp_ImportTag_0.doEndTag();
+      } catch (Throwable _jsp_exn_14) {
+        pageContext.setWriter(_jsp_writer11);
+        out = _jsp_writer11;
+        _jsp_ImportTag_0.doCatch(_jsp_exn_14);
+      } finally {
+        _jsp_ImportTag_0.doFinally();
+      }
+      out.write(_jsp_string6, 0, _jsp_string6.length);
     } catch (java.lang.Throwable _jsp_e) {
       pageContext.handlePageException(_jsp_e);
     } finally {
@@ -174,11 +193,11 @@ request.setAttribute("email", email);
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("login.jsp"), 7319824297715609324L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("login.jsp"), -5681555311937140071L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -2379442732689387975L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/E:/eclipse_workspace/labview/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
+    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/C:/Users/zhoucijoe/git/labview/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tag.rt.core.ImportTag.class, 6027995467445314107L));
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tei.ImportTEI.class, 7046138242264411925L));
@@ -194,18 +213,20 @@ request.setAttribute("email", email);
   private static com.caucho.el.Expr _caucho_expr_0;
   private static com.caucho.el.Expr _caucho_expr_1;
 
+  private final static char []_jsp_string4;
   private final static char []_jsp_string3;
-  private final static char []_jsp_string5;
+  private final static char []_jsp_string6;
   private final static char []_jsp_string1;
   private final static char []_jsp_string0;
-  private final static char []_jsp_string4;
+  private final static char []_jsp_string5;
   private final static char []_jsp_string2;
   static {
+    _jsp_string4 = "\r\n							</div><br/>\r\n							<label for=\"UserName\">\u7528\u6237\u540d</label><input autofocus=\"autofocus\" id=\"UserName\" name=\"UserName\" type=\"text\" value=\"\" /><span id=\"error_u\"></span><br/>\r\n							<label for=\"Password\">\u5bc6\u7801</label><input id=\"Password\" name=\"Password\" onkeypress=\"if (event.keyCode==13) { submit(); }\" type=\"password\" /><span id=\"error_p\"></span>\r\n                            \r\n						</div>\r\n						<div class=\"box_btn\" style=\"padding-left:24px;\">\r\n							<a class=\"box_btn_s\" id=\"btn_signin\" href=\"javascript:submit();\">\u767b\u5165</a>\r\n                            \r\n                            <a id=\"box_btn_star\" style=\"width:48px;text-decoration:none;\" href=\"/account/signup\">\u6ce8\u518c\u5e10\u53f7</a>\r\n                            \r\n						</div>\r\n                    </form>\r\n                    </div>\r\n                    <div class=\"clear\"></div>\r\n\r\n	                        </div>\r\n	                        <div id=\"box_bottom\"></div>\r\n                        </div>\r\n                        \r\n                    </div>\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n		".toCharArray();
     _jsp_string3 = "/user/login.do\" id=\"signinform\" method=\"post\">\r\n						<div style=\"margin-top: 60px;\">\r\n							<div class=\"field-validation-error\" id=\"validationSummary\" style=\"height:18px;margin-left:48px;\">\r\n								".toCharArray();
-    _jsp_string5 = "\r\n	<!-- END #footer -->\r\n</div>\r\n<!-- END #wrapper -->\r\n</body>\r\n\r\n</html>\r\n".toCharArray();
+    _jsp_string6 = "\r\n	<!-- END #footer -->\r\n</div>\r\n<!-- END #wrapper -->\r\n</body>\r\n\r\n</html>\r\n".toCharArray();
     _jsp_string1 = "\r\n\r\n\r\n\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\" />\r\n    <meta name=\"robots\" content=\"noarchive\" />\r\n    \r\n    <title>\r\n    \r\n	\u767b\u5165\u5e10\u53f7 - Labview\r\n\r\n</title>\r\n    <link href=\"/css/style.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/img/180x180.png\" />\r\n    <link rel=\"icon\" sizes=\"192x192\" href=\"/img/192x192.png\" />\r\n    <!--[if lt IE 7]>\r\n    <link href=\"/css/ie6.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <![endif]-->\r\n    <script src=\"/js/jquery-3.1.1.min.js\" type=\"text/javascript\"></script>\r\n    \r\n    <script src=\"/js/jscript.js\" type=\"text/javascript\"></script>\r\n    \r\n    \r\n<meta content=\"\u767b\u5165labview.help\uff0c\u8d26\u53f7\u767b\u9646\u3001\u767b\u9646\u7ba1\u7406\u6e90\u7801\u6587\u4ef6\u3002\" name=\"description\" />\r\n<meta content=\"\u767b\u5165,labview,labview.help,\u6e90\u7801\u89e3\u7801,\u5bc6\u7801\u7834\u89e3,\u5f00\u6e90\u514d\u8d39\" name=\"keywords\" />\r\n    <script type=\"text/javascript\">\r\n        function submitCheck() {\r\n            $('#error_u').text('');\r\n            $('#error_p').text('');\r\n            if ($('#UserName').val() == '') {\r\n                $('#error_u').text('\u8bf7\u8f93\u5165\u7528\u6237\u540d');\r\n                return false;\r\n            }\r\n            if ($('#Password').val() == '') {\r\n                $('#error_p').text('\u8bf7\u8f93\u5165\u5bc6\u7801');\r\n                return false;\r\n            }\r\n            return true;\r\n        }\r\n        function submit() {\r\n            if (!submitCheck()) return;\r\n            document.getElementById('signinform').submit();\r\n            $(\".box_btn a\").attr('href', 'javascript:void(null)');\r\n        }\r\n    </script>\r\n\r\n    <script type=\"text/javascript\">\r\n        $(document).ready(function () {\r\n            $(\"#wrapper\").append(\"<script type=\\\"text/javascript\\\">window.scrollTo(0, 230);<\\/script>\");\r\n        });\r\n    </script>\r\n\r\n</head>\r\n\r\n<body>\r\n\r\n<div id=\"wrapper\">\r\n	<!-- #header -->\r\n	".toCharArray();
     _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
-    _jsp_string4 = "\r\n							</div><br/>\r\n							<label for=\"UserName\">\u7528\u6237\u540d</label><input autofocus=\"autofocus\" id=\"UserName\" name=\"UserName\" type=\"text\" value=\"\" /><span id=\"error_u\"></span><br/>\r\n							<label for=\"Password\">\u5bc6\u7801</label><input id=\"Password\" name=\"Password\" onkeypress=\"if (event.keyCode==13) { submit(); }\" type=\"password\" /><span id=\"error_p\"></span>\r\n                            \r\n						</div>\r\n						<div class=\"box_btn\" style=\"padding-left:24px;\">\r\n							<a class=\"box_btn_s\" id=\"btn_signin\" href=\"javascript:submit();\">\u767b\u5165</a>\r\n                            \r\n                            <a id=\"box_btn_star\" style=\"width:48px;text-decoration:none;\" href=\"/account/signup\">\u6ce8\u518c\u5e10\u53f7</a>\r\n                            \r\n						</div>\r\n                    </form>\r\n                    </div>\r\n                    <div class=\"clear\"></div>\r\n\r\n	                        </div>\r\n	                        <div id=\"box_bottom\"></div>\r\n                        </div>\r\n                        \r\n                    </div>\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n		<div id=\"right_col\">\r\n            \r\n\r\n			\r\n		</div>\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	".toCharArray();
+    _jsp_string5 = "\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	".toCharArray();
     _jsp_string2 = "\r\n	<script type=\"text/javascript\">\r\n		document.getElementById(\"login\").setAttribute('class','current_page_item');\r\n	</script>\r\n	<!-- #header -->\r\n	<div id=\"contents\" class=\"clearfix\">\r\n		<div id=\"left_col\">\r\n            \r\n                    <div id=\"box\">\r\n                        <h1 class=\"box_title\">\u767b\u5165\u5e10\u53f7 Sign In</h1>\r\n                        <div>\r\n	                        <div id=\"box_top\"></div>\r\n	                        <div id=\"box_body\">\r\n                            \r\n                    <div id=\"box_img\"><img src=\"/img/box_img.png\" alt=\"\" /></div>\r\n					<div id=\"box_content\">\r\n                    <form action=\"".toCharArray();
   }
 }

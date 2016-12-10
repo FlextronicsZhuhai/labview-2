@@ -12,10 +12,33 @@ public class ZipFile implements Serializable{
 	
 	private int userId;
 	
+	/**
+	 * 文件原名字
+	 */
 	private String originName;
-	
+	/**
+	 * 文件临时名字
+	 */
 	private String tempName;
-	
+	/**
+	 * 上传路径
+	 */
+	private String uploadPath;
+	/**
+	 * 解压路径
+	 */
+	private String depressPath;
+	/**
+	 * 解密后路径
+	 */
+	private String decodePath;
+	/**
+	 * 重新压缩路径
+	 */
+	private String rePressPath;
+	/**
+	 * 下载时间
+	 */
 	private Date downloadDate;
 	
 	private int status;
@@ -97,6 +120,38 @@ public class ZipFile implements Serializable{
 		this.updateAt = updateAt;
 	}
 	
+	public String getUploadPath() {
+		return uploadPath;
+	}
+
+	public void setUploadPath(String uploadPath) {
+		this.uploadPath = uploadPath;
+	}
+
+	public String getDepressPath() {
+		return depressPath;
+	}
+
+	public void setDepressPath(String depressPath) {
+		this.depressPath = depressPath;
+	}
+
+	public String getDecodePath() {
+		return decodePath;
+	}
+
+	public void setDecodePath(String decodePath) {
+		this.decodePath = decodePath;
+	}
+
+	public String getRePressPath() {
+		return rePressPath;
+	}
+
+	public void setRePressPath(String rePressPath) {
+		this.rePressPath = rePressPath;
+	}
+
 	/**
 	 * 格式化文件大小
 	 * @return

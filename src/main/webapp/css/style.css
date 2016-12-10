@@ -11,7 +11,7 @@ Tags: white, simple, three-columns, fixed-width, theme-options, threaded-comment
 
 /* ----- basic --------------------------------------------------------------------------------------------------------------------------------- */
 body { margin:0; padding:0; background:#e3e3e3;
-       font-family:"Century Gothic", Arial, Helvetica, "STXihei", "»ªÎÄÏ¸ºÚ", "Microsoft Yahei", "Î¢ÈíÑÅºÚ", sans-serif;
+       font-family:"Century Gothic", Arial, Helvetica, "STXihei", "ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½", "Microsoft Yahei", "Î¢ï¿½ï¿½ï¿½Åºï¿½", sans-serif;
        font-size:12px; color:#555; }
 a img { border:none; }
 a, a:visited { color:#50988f; text-decoration:none; outline:none; }
@@ -70,10 +70,13 @@ object { display:block; margin:0 auto; }
 #header_twitter:hover { background-position:left bottom; }
 
 /* search area */
-#header_search_area { float:left; width:155px; height:39px; background:url(../img/search_area.gif) no-repeat left top; margin:2px 25px 0 0; position:relative; }
+#header_search_area {float: left;width: 180px;height: 39px;margin: 2px 25px 0 0;position: relative; }
 #search_input { position:absolute; top:13px; left:8px; margin:0; border:0px; height:15px; display:inline; width:105px; font-size:100%; color:#bbb; background:transparent; }
 #search_button { position:absolute; right:0px; }
-
+#face_tips{position: relative;left: 15px;top: 5px;font-size: 16px;width: 350px;}
+#face{border-radius: 100px;float: left;position: relative;bottom: 10px;}
+.face_pic{border-radius: 100px;float: left;position: relative;}
+#tips{top: 10px;position: relative;left: 15px;}
 /* ***********************************************************
 
        header menu is at the bottom of this page!

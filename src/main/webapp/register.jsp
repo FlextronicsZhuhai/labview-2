@@ -33,7 +33,7 @@
             inValidUserName = true;
             $('#error_u').text('');
             var u = $('#UserName').val();
-            if (u.length < 1 || u.length > 11) {
+            if (u.length <= 1 || u.length > 10) {
                 $('#error_u').text('长度须为2-10位');
                 return;
             }
@@ -180,11 +180,7 @@
 
 		</div>
 		<!-- END #left_col -->
-		<div id="right_col">
-            
-
-			
-		</div>
+		<c:import url="/include/right.jsp"></c:import>
 		<!-- END #right_col -->
 	</div>
 	<!-- END #contents -->

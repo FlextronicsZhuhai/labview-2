@@ -51,14 +51,41 @@ request.setAttribute("root", root);
 request.setAttribute("email", email); 
 
       out.write(_jsp_string1, 0, _jsp_string1.length);
-      _caucho_expr_0.print(out, _jsp_env, false);
+      
+User user = (User)request.getSession().getAttribute("currentUser");
+pageContext.setAttribute("user", user);
+
       out.write(_jsp_string2, 0, _jsp_string2.length);
-      _caucho_expr_0.print(out, _jsp_env, false);
-      out.write(_jsp_string3, 0, _jsp_string3.length);
-      _caucho_expr_0.print(out, _jsp_env, false);
-      out.write(_jsp_string4, 0, _jsp_string4.length);
-      _caucho_expr_0.print(out, _jsp_env, false);
-      out.write(_jsp_string5, 0, _jsp_string5.length);
+      if (_caucho_expr_0.evalBoolean(_jsp_env)) {
+        out.write(_jsp_string3, 0, _jsp_string3.length);
+        _caucho_expr_1.print(out, _jsp_env, false);
+        out.write(_jsp_string4, 0, _jsp_string4.length);
+      }
+      else {
+        out.write(_jsp_string5, 0, _jsp_string5.length);
+      }
+      out.write(_jsp_string6, 0, _jsp_string6.length);
+      if (_caucho_expr_0.evalBoolean(_jsp_env)) {
+        out.write(_jsp_string7, 0, _jsp_string7.length);
+        _caucho_expr_2.print(out, _jsp_env, false);
+        out.write(_jsp_string8, 0, _jsp_string8.length);
+      }
+      else {
+        out.write(_jsp_string7, 0, _jsp_string7.length);
+        _caucho_expr_2.print(out, _jsp_env, false);
+        out.write(_jsp_string9, 0, _jsp_string9.length);
+        _caucho_expr_2.print(out, _jsp_env, false);
+        out.write(_jsp_string10, 0, _jsp_string10.length);
+      }
+      out.write(_jsp_string11, 0, _jsp_string11.length);
+      _caucho_expr_2.print(out, _jsp_env, false);
+      out.write(_jsp_string12, 0, _jsp_string12.length);
+      _caucho_expr_2.print(out, _jsp_env, false);
+      out.write(_jsp_string13, 0, _jsp_string13.length);
+      _caucho_expr_2.print(out, _jsp_env, false);
+      out.write(_jsp_string14, 0, _jsp_string14.length);
+      _caucho_expr_2.print(out, _jsp_env, false);
+      out.write(_jsp_string15, 0, _jsp_string15.length);
     } catch (java.lang.Throwable _jsp_e) {
       pageContext.handlePageException(_jsp_e);
     } finally {
@@ -112,9 +139,12 @@ request.setAttribute("email", email);
     super.init(config);
     com.caucho.jsp.TaglibManager manager = webApp.getJspApplicationContext().getTaglibManager();
     manager.addTaglibFunctions(_jsp_functionMap, "c", "http://java.sun.com/jsp/jstl/core");
+    manager.addTaglibFunctions(_jsp_functionMap, "fn", "http://java.sun.com/jsp/jstl/functions");
     manager.addTaglibFunctions(_jsp_functionMap, "en", "/WEB-INF/enums");
     com.caucho.jsp.PageContextImpl pageContext = new com.caucho.jsp.PageContextImpl(webApp, this);
-    _caucho_expr_0 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${root }");
+    _caucho_expr_0 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${!empty user }");
+    _caucho_expr_1 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${user.username }");
+    _caucho_expr_2 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${root }");
   }
 
   public void destroy()
@@ -135,25 +165,47 @@ request.setAttribute("email", email);
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("include/menu.jsp"), 1974802514033345985L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("include/menu.jsp"), -7200317076664378929L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), 7536529205141102298L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -2379442732689387975L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
   private static com.caucho.el.Expr _caucho_expr_0;
+  private static com.caucho.el.Expr _caucho_expr_1;
+  private static com.caucho.el.Expr _caucho_expr_2;
 
   private final static char []_jsp_string2;
-  private final static char []_jsp_string0;
-  private final static char []_jsp_string4;
-  private final static char []_jsp_string1;
-  private final static char []_jsp_string5;
   private final static char []_jsp_string3;
+  private final static char []_jsp_string6;
+  private final static char []_jsp_string9;
+  private final static char []_jsp_string12;
+  private final static char []_jsp_string7;
+  private final static char []_jsp_string14;
+  private final static char []_jsp_string15;
+  private final static char []_jsp_string11;
+  private final static char []_jsp_string10;
+  private final static char []_jsp_string1;
+  private final static char []_jsp_string8;
+  private final static char []_jsp_string5;
+  private final static char []_jsp_string0;
+  private final static char []_jsp_string13;
+  private final static char []_jsp_string4;
   static {
-    _jsp_string2 = "/service.jsp\">\u89e3\u5bc6\u670d\u52a1</a>\r\n		            <li id=\"register\"><a href=\"".toCharArray();
-    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
-    _jsp_string4 = "/guide.jsp\">\u4f7f\u7528\u6307\u5357</a>\r\n		            <li id=\"login\"><a href=\"".toCharArray();
-    _jsp_string1 = "\r\n\r\n<div id=\"header\">\r\n		<div id=\"logo\">\r\n			<a id=\"logo_text\" href=\"/\">Labview.help</a>\r\n			<div id=\"description\">.</div>\r\n		</div>\r\n		<div id=\"header_meta\" >\r\n			<div id=\"header_search_area\">\r\n				<form id=\"searchform\" action=\"#\" method=\"get\">\r\n					<div>\r\n						<input id=\"search_input\" name=\"s\" onfocus=\"this.value=''; changefc('#333');\" type=\"text\" value=\"Search\" /></div>\r\n					<div>\r\n						<input id=\"search_button\" alt=\"Search from this blog.\" src=\"/img/search_button.gif\" title=\"Search from this blog.\" type=\"image\" /></div>\r\n				</form>\r\n			</div>\r\n<!-- JiaThis Button BEGIN -->\r\n\r\n<div class=\"jiathis_style_32x32\" style=\"position: relative;float: left;\">\r\n	<a class=\"jiathis_button_tsina\"></a>\r\n	<a class=\"jiathis_button_weixin\"></a>\r\n	<a class=\"jiathis_button_douban\"></a>\r\n	<a href=\"http://www.jiathis.com/share\" class=\"jiathis jiathis_txt jtico jtico_jiathis\" target=\"_blank\"></a>\r\n</div>\r\n<script type=\"text/javascript\" src=\"http://v3.jiathis.com/code_mini/jia.js\" charset=\"utf-8\"></script>\r\n<!-- JiaThis Button END -->\r\n		</div>\r\n		\r\n            <!-- END #header_meta -->\r\n            <div class=\"header_menu\">\r\n	            <ul id=\"menu\" class=\"menu\">\r\n		            <li id=\"index\"><a href=\"/\">\u9996\u9875</a></li>\r\n                    <li id=\"service\"><a href=\"".toCharArray();
-    _jsp_string5 = "/login.jsp\">\u6211\u7684\u8d26\u53f7</a></li>\r\n	            </ul>\r\n            </div>\r\n            <!-- END #header_menu -->\r\n	</div>".toCharArray();
-    _jsp_string3 = "/register.jsp\">\u6ce8\u518c\u8d26\u53f7</a></li>\r\n		            <li id=\"guide\"><a href=\"".toCharArray();
+    _jsp_string2 = "\r\n<div id=\"header\">\r\n		<div id=\"logo\">\r\n			<a id=\"logo_text\" href=\"/\">Labview.help</a>\r\n			<div id=\"description\">\u952e\u76d8\u4e0a\uff0c\u6307\u5c16\u7684\u821e\u8e48\uff1b\u5b57\u6bcd\u4e2d\uff0c\u8df3\u8dc3\u7684\u97f3\u7b26\uff01</div>\r\n		</div>\r\n		<div id=\"header_meta\" >\r\n			<div id=\"header_search_area\">\r\n					<div id=\"face\">\r\n						<img alt=\"face\" src=\"/img/face.jpg\" width=\"60px\" class=\"face_pic\">\r\n					</div>\r\n					<div id=\"face_tips\">\r\n						".toCharArray();
+    _jsp_string3 = "\r\n								<a>welcome:".toCharArray();
+    _jsp_string6 = "\r\n					</div>\r\n					<div id=\"tips\">\r\n						".toCharArray();
+    _jsp_string9 = "/login.jsp\" title=\"\u767b\u5f55\">\u767b\u5f55</a>&nbsp;&nbsp;\r\n								<a href=\"".toCharArray();
+    _jsp_string12 = "/service.jsp\">\u89e3\u5bc6\u670d\u52a1</a>\r\n		            <li id=\"register\"><a href=\"".toCharArray();
+    _jsp_string7 = "\r\n								<a href=\"".toCharArray();
+    _jsp_string14 = "/guide.jsp\">\u4f7f\u7528\u6307\u5357</a>\r\n		            <li id=\"login\"><a href=\"".toCharArray();
+    _jsp_string15 = "/login.jsp\">\u6211\u7684\u8d26\u53f7</a></li>\r\n	            </ul>\r\n            </div>\r\n            <!-- END #header_menu -->\r\n	</div>".toCharArray();
+    _jsp_string11 = "\r\n					</div>\r\n					<div class=\"jiathis_style\" style=\"position: relative;float: left;right: 150px;width: 380px;/*!  */bottom: 3px;\">\r\n						<span class=\"jiathis_txt\">\u5206\u4eab\u5230\uff1a</span>\r\n						<a class=\"jiathis_button_tsina\">\u65b0\u6d6a\u5fae\u535a</a>\r\n						<a class=\"jiathis_button_weixin\">\u5fae\u4fe1</a>\r\n						<a class=\"jiathis_button_cqq\">QQ\u597d\u53cb</a>\r\n						<a class=\"jiathis_button_fav\">\u6536\u85cf\u5939</a>\r\n						<a href=\"http://www.jiathis.com/share\" class=\"jiathis jiathis_txt jiathis_separator jtico jtico_jiathis\" target=\"_blank\">\u66f4\u591a</a>\r\n					</div>\r\n					<script type=\"text/javascript\" src=\"http://v3.jiathis.com/code/jia.js\" charset=\"utf-8\"></script>\r\n			</div>\r\n\r\n		</div>\r\n		\r\n		\r\n            <!-- END #header_meta -->\r\n            <div class=\"header_menu\">\r\n	            <ul id=\"menu\" class=\"menu\">\r\n		            <li id=\"index\"><a href=\"/\">\u9996\u9875</a></li>\r\n                    <li id=\"service\"><a href=\"".toCharArray();
+    _jsp_string10 = "/register.jsp\" title=\"\u6ce8\u518c\">\u6ce8\u518c</a>\r\n							".toCharArray();
+    _jsp_string1 = "\r\n\r\n\r\n".toCharArray();
+    _jsp_string8 = "/user/out.do\" title=\"\u9000\u51fa\u767b\u5f55\">\u9000\u51fa\u767b\u5f55</a>\r\n							".toCharArray();
+    _jsp_string5 = "\r\n								<a>\u4f60\u8fd8\u6ca1\u767b\u9646\u54e6\uff01</a>\r\n							".toCharArray();
+    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
+    _jsp_string13 = "/register.jsp\">\u6ce8\u518c\u8d26\u53f7</a></li>\r\n		            <li id=\"guide\"><a href=\"".toCharArray();
+    _jsp_string4 = "</a>\r\n							".toCharArray();
   }
 }

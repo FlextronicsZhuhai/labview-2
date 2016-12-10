@@ -1,30 +1,32 @@
+<%@page import="com.joe.myvideo.util.StringUtils"%>
+<%@page import="com.joe.myvideo.util.SysConfig"%>
 <%@page import="com.joe.myvideo.entity.User"%>
 <%@page import="com.joe.myvideo.service.impl.UserServiceImpl"%>
 <%@page import="com.joe.myvideo.util.SpringCtxUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" session="false"%>
 <%
-/* String username = request.getParameter("username");
-String password = request.getParameter("password");
-User user =new User();
-user.setPassword(password);
-user.setUsername(username);
-user.setStatus(1);
-out.println(SpringCtxUtils.getBean(UserServiceImpl.class).checkLogin(user) != null);
-if(SpringCtxUtils.getBean(UserServiceImpl.class).checkLogin(user) != null){
-	request.getSession().setAttribute("currentUser", user);
-	response.sendRedirect("index.jsp");
+String action = StringUtils.get(request.getParameter("action"), "");//参数
+if("logout".equals(action)){
+	request.getSession().removeAttribute("admin");
+	pageContext.setAttribute("txt", "退出成功。");
 }else{
-	pageContext.setAttribute("txt", "帐号或密码错。");
-} */
-/* 
-    String code = EnvUtils.getEnv().param("code");
-    if ("login_fail".equals(code)) {
-        pageContext.setAttribute("txt", "帐号或密码错。");
-    } else if ("unauthorized".equals(code)) {
-        pageContext.setAttribute("txt", "您未开通本系统权限。");
-    } else {
-        pageContext.setAttribute("txt", code);
-    } */
+	String username = StringUtils.get(request.getParameter("username"), "");//参数
+	String password = StringUtils.get(request.getParameter("password"),"");
+	
+	String admin_username = SysConfig.getConfig("admin.username");//超级管理员账号，在配置文件中
+	String admin_password = SysConfig.getConfig("admin.password");
+	if(username.equals(admin_username) && password.equals(admin_password)){
+		User user =new User();
+		user.setPassword(password);
+		user.setUsername(username);
+		request.getSession().setAttribute("admin", user);
+		response.sendRedirect("index.jsp");
+	}else{
+		pageContext.setAttribute("txt", "帐号或密码错。");
+	} 
+}
+
+
 
 %><!DOCTYPE html>
 <html>
@@ -152,7 +154,7 @@ body {
 <body>
 	<form id="login">
 		<div>
-			<img src="themes/default/images/pcgrouplogo.png" /> <span
+			<img src="themes/default/images/pcgrouplogo.png" width="230px"/> <span
 				style="font-size: 36px; padding: 10px; color: #666;">提示信息</span>
 		</div>
 		<div

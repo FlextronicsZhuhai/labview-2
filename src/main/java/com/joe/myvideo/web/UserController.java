@@ -2,7 +2,9 @@ package com.joe.myvideo.web;
 
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -167,5 +169,26 @@ public class UserController {
 			req.setAttribute("msg", msg);
 		}
 		return "login";
+	}
+	
+	
+	//-----------------------后台---------------------------
+	@RequestMapping("/admin-list.do")
+	public String list(HttpServletRequest req,HttpServletResponse res,HttpSession session){
+        int pageNo = StringUtils.getInt(req.getParameter("pageNum"), 1);
+        int pageSize = StringUtils.getInt(req.getParameter("numPerPage"), 25);
+        Map<String, Object> params = new HashMap<String, Object>();
+        
+		params.put("begin", pageSize*(pageNo-1));
+		params.put("end", pageSize*(pageNo-1)+pageSize);
+		
+        req.setAttribute("list", userServiceImpl.pageList(params));//暂时无条件
+        req.setAttribute("pageNum",pageNo);
+        req.setAttribute("pageSize",pageSize);
+		req.setAttribute("orderField", StringUtils.get(req.getParameter("orderDirection"), "createTime"));
+		req.setAttribute("orderDirection", StringUtils.get(req.getParameter("orderDirection"), "desc"));
+		req.setAttribute("total", userServiceImpl.getTatolCount(params));
+		
+		return "/WEB-INF/jsp/admin/user/list";
 	}
 }

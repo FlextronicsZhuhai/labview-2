@@ -6,6 +6,15 @@ package _jsp;
 import javax.servlet.*;
 import javax.servlet.jsp.*;
 import javax.servlet.http.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.joe.myvideo.service.impl.ZipFileServiceImpl;
+import com.joe.myvideo.entity.ZipFile;
+import java.util.List;
+import com.joe.myvideo.service.ZipFileService;
+import com.joe.myvideo.util.StringUtils;
+import java.util.HashMap;
+import java.util.Map;
+import com.joe.myvideo.entity.User;
 import com.joe.myvideo.util.SysConfig;
 import com.joe.myvideo.util.SpringCtxUtils;
 
@@ -36,18 +45,20 @@ public class _guide__jsp extends com.caucho.jsp.JavaPage
       
 String systemName = SysConfig.getConfig("system.systemName");
 String root = SysConfig.getConfig("system.root");
+String email = SysConfig.getConfig("system.email");
 
 request.setAttribute("systemName", systemName);
-request.setAttribute("root", root);
+request.setAttribute("root", root); 
+request.setAttribute("email", email); 
 
       out.write(_jsp_string1, 0, _jsp_string1.length);
       if (_jsp_ImportTag_0 == null) {
         _jsp_ImportTag_0 = new org.apache.taglibs.standard.tag.rt.core.ImportTag();
         _jsp_ImportTag_0.setPageContext(pageContext);
         _jsp_ImportTag_0.setParent((javax.servlet.jsp.tagext.Tag) null);
-        _jsp_ImportTag_0.setUrl("/include/menu.jsp");
       }
 
+      _jsp_ImportTag_0.setUrl("/include/menu.jsp");
       javax.servlet.jsp.JspWriter _jsp_writer1 = out;
       try {
         _jsp_ImportTag_0.doStartTag();
@@ -60,6 +71,44 @@ request.setAttribute("root", root);
         _jsp_ImportTag_0.doFinally();
       }
       out.write(_jsp_string2, 0, _jsp_string2.length);
+      if (_jsp_ImportTag_0 == null) {
+        _jsp_ImportTag_0 = new org.apache.taglibs.standard.tag.rt.core.ImportTag();
+        _jsp_ImportTag_0.setPageContext(pageContext);
+        _jsp_ImportTag_0.setParent((javax.servlet.jsp.tagext.Tag) null);
+      }
+
+      _jsp_ImportTag_0.setUrl("/include/right.jsp");
+      javax.servlet.jsp.JspWriter _jsp_writer6 = out;
+      try {
+        _jsp_ImportTag_0.doStartTag();
+        _jsp_ImportTag_0.doEndTag();
+      } catch (Throwable _jsp_exn_9) {
+        pageContext.setWriter(_jsp_writer6);
+        out = _jsp_writer6;
+        _jsp_ImportTag_0.doCatch(_jsp_exn_9);
+      } finally {
+        _jsp_ImportTag_0.doFinally();
+      }
+      out.write(_jsp_string3, 0, _jsp_string3.length);
+      if (_jsp_ImportTag_0 == null) {
+        _jsp_ImportTag_0 = new org.apache.taglibs.standard.tag.rt.core.ImportTag();
+        _jsp_ImportTag_0.setPageContext(pageContext);
+        _jsp_ImportTag_0.setParent((javax.servlet.jsp.tagext.Tag) null);
+      }
+
+      _jsp_ImportTag_0.setUrl("/include/footer.jsp");
+      javax.servlet.jsp.JspWriter _jsp_writer11 = out;
+      try {
+        _jsp_ImportTag_0.doStartTag();
+        _jsp_ImportTag_0.doEndTag();
+      } catch (Throwable _jsp_exn_14) {
+        pageContext.setWriter(_jsp_writer11);
+        out = _jsp_writer11;
+        _jsp_ImportTag_0.doCatch(_jsp_exn_14);
+      } finally {
+        _jsp_ImportTag_0.doFinally();
+      }
+      out.write(_jsp_string4, 0, _jsp_string4.length);
     } catch (java.lang.Throwable _jsp_e) {
       pageContext.handlePageException(_jsp_e);
     } finally {
@@ -115,6 +164,8 @@ request.setAttribute("root", root);
     super.init(config);
     com.caucho.jsp.TaglibManager manager = webApp.getJspApplicationContext().getTaglibManager();
     manager.addTaglibFunctions(_jsp_functionMap, "c", "http://java.sun.com/jsp/jstl/core");
+    manager.addTaglibFunctions(_jsp_functionMap, "fn", "http://java.sun.com/jsp/jstl/functions");
+    manager.addTaglibFunctions(_jsp_functionMap, "en", "/WEB-INF/enums");
     com.caucho.jsp.PageContextImpl pageContext = new com.caucho.jsp.PageContextImpl(webApp, this);
   }
 
@@ -136,11 +187,11 @@ request.setAttribute("root", root);
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("guide.jsp"), -8537127471035779862L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("guide.jsp"), 3699795752286800940L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -1886185392234924169L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -2379442732689387975L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/G:/joe/20161128/myvideo/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
+    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/C:/Users/zhoucijoe/git/labview/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tag.rt.core.ImportTag.class, 6027995467445314107L));
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tei.ImportTEI.class, 7046138242264411925L));
@@ -154,12 +205,16 @@ request.setAttribute("root", root);
     }
   }
 
-  private final static char []_jsp_string0;
   private final static char []_jsp_string1;
+  private final static char []_jsp_string4;
   private final static char []_jsp_string2;
+  private final static char []_jsp_string0;
+  private final static char []_jsp_string3;
   static {
-    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
-    _jsp_string1 = "\r\n\r\n\r\n\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\" />\r\n    <meta name=\"robots\" content=\"noarchive\" />\r\n    \r\n    <title>\r\n	OpenVPN for Windows - IPv6VPN\r\n</title>\r\n    <link href=\"/css/style.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/icon/180x180.png\" />\r\n    <link rel=\"icon\" sizes=\"192x192\" href=\"/icon/192x192.png\" />\r\n    <!--[if lt IE 7]>\r\n    <link href=\"/css/ie6.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <![endif]-->\r\n    <script src=\"/js/jquery-3.1.1.min.js\" type=\"text/javascript\"></script>\r\n    \r\n    <script src=\"/js/jscript.js\" type=\"text/javascript\"></script>\r\n    \r\n<meta content=\"OpenVPN,Win,Windows,IPv6,VPN\" name=\"keywords\" />\r\n\r\n</head>\r\n\r\n<body>\r\n\r\n<div id=\"wrapper\">\r\n	<!-- #header -->\r\n	".toCharArray();
-    _jsp_string2 = "\r\n	<script type=\"text/javascript\">\r\n		document.getElementById(\"guide\").setAttribute('class','current_page_item');\r\n	</script>\r\n	<!-- #header -->\r\n	<div id=\"contents\" class=\"clearfix\">\r\n		<div id=\"left_col\">\r\n            \r\n\r\n<div class=\"post\">\r\n    <h2 class=\"post_title\">OpenVPN for Windows</h2>\r\n    <ul class=\"post_info\">\r\n        <li>Last Updated: Oct 10, 2016</li>\r\n    </ul>\r\n    <div class=\"post_content\">\r\n        <p><b>\u63d0\u793a:&nbsp;&nbsp;</b>OpenVPN \u9002\u5408\u5728\u5df2\u63a5\u5165 IPv6 \u7f51\u7edc\u7684\u9ad8\u6821\u8303\u56f4\u4f7f\u7528\u3002\u7535\u4fe1\u5bbd\u5e26\u7b49 IPv4 \u7f51\u7edc\u7528\u6237\u4e5f\u53ef\u4ee5\u4f7f\u7528\uff08\u4ec5\u9650 Pro \u5957\u9910\uff09\u3002\r\n        </p><br />\r\n        <p><b>\u7b2c\u4e00\u6b65:&nbsp;&nbsp;</b> \u4e0b\u8f7d\u5b89\u88c5 IPv6VPN.NET \u5b9a\u5236\u7248 OpenVPN \u5ba2\u6237\u7aef\uff1a\r\n        <a target=\"_blank\" href=\"/downloads/auth/openvpn/openvpn-2.3.12-ipv6vpn.net-x86_64.exe\">64\u4f4d</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/downloads/auth/openvpn/openvpn-2.3.12-ipv6vpn.net-i686.exe\">32\u4f4d</a><br />\r\n        \uff08\u5b9a\u5236\u7248\u5185\u7f6e\u4e86\u8bc1\u4e66\u548c\u914d\u7f6e\u6587\u4ef6\uff0c\u589e\u52a0\u4e86 IPv6 DNS \u8bbe\u7f6e\u7528\u4ee5\u52a0\u901f\u57df\u540d\u89e3\u6790\uff0c\u5176\u4ed6\u4e0e\u539f\u7248\u6ca1\u6709\u5dee\u522b\uff09\r\n        <img src=\"/images/t_openvpn_windows_1.jpg\" alt=\"\" class=\"aligncenter size-full wp-image-535\"/>\r\n        \uff08\u6216\u8005\uff0c\u4f60\u53ef\u4ee5\u4ece OpenVPN \u5b98\u7f51\u4e0b\u8f7d\u5ba2\u6237\u7aef(2.3.9\u6216\u66f4\u65b0\u7248\u672c)\uff0c\u7136\u540e\u4e0b\u8f7d <a target=\"_blank\" href=\"/downloads/auth/openvpn/configs/cert.zip\">\u8bc1\u4e66</a> \u53ca <a target=\"_blank\" href=\"/config/openvpn\">\u914d\u7f6e\u6587\u4ef6</a> \uff0c\u89e3\u538b\u540e\u653e\u5230\u5b89\u88c5\u76ee\u5f55config\u6587\u4ef6\u5939\u4e0b\u3002\uff09\r\n        </p><br />\r\n        <p><b>\u7b2c\u4e8c\u6b65:&nbsp;&nbsp;</b> \u627e\u5230\u684c\u9762\u4e0a\u65b0\u51fa\u73b0\u7684 openvpn-gui \u5feb\u6377\u65b9\u5f0f\uff0c\u53cc\u51fb\u8fd0\u884c\u3002\u542f\u52a8\u540e\u53f3\u51fb\u4efb\u52a1\u680f\u4e2d\u7684\u56fe\u6807\uff0c\u6839\u636e\u6240\u5904\u7f51\u7edc\u9009\u62e9\u5408\u9002\u7684\u914d\u7f6e\u6587\u4ef6\uff08\u4f8b\u5982 IPv6_US \u662f\u6307\u901a\u8fc7 IPv6 \u7f51\u7edc\u8fde\u63a5 US \u670d\u52a1\u5668\uff09\u3002\u7136\u540e\u70b9 Connect\uff0c\u8f93\u5165\u7528\u6237\u540d\u5bc6\u7801\u3002\u7a0d\u7b49\u7247\u523b\u540e\uff0c\u5f00\u59cb\u7545\u6e38\u5168\u7403\u7f51\u7edc\u3002\r\n        <br /><img src=\"/images/t_openvpn_windows_2.jpg\" alt=\"\" class=\"aligncenter size-full wp-image-535\"/>\r\n        </p><br />\r\n        <p><b>\u8fdb\u9636\u8bbe\u7f6e:&nbsp;&nbsp;</b> \u8bf7\u70b9\u51fb <a href=\"/config/openvpn\">\u8fd9\u91cc</a> \u67e5\u770b\u53ef\u9009\u914d\u7f6e\u6587\u4ef6\u3002\u5982\u679c\u4f60\u662f\u9ad8\u6821\u7528\u6237\uff0c\u63a8\u8350\u4f7f\u7528\u4e3a\u9ad8\u6821\u5b9a\u5236\u7684\u914d\u7f6e\u6587\u4ef6\uff0c\u8fd9\u6837\u53ef\u4ee5\u5728\u8fde\u4e0aVPN\u7684\u540c\u65f6\u8bbf\u95ee\u5b66\u6821\u5185\u7f51\u3002</p><br />\r\n    </div>\r\n</div>\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n		<div id=\"right_col\">\r\n            \r\n\r\n			\r\n		</div>\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	<div id=\"footer\">\r\n		<ul id=\"copyright\">\r\n			<li style=\"background: none;\"><a href=\"https://ipv6vpn.net/\">IPv6VPN.NET</a></li>\r\n            <li><a href=\"/tos?s=b\">Terms of Service</a></li>\r\n            <li><a href=\"/faq\">FAQ</a></li>\r\n			<li><a href=\"http://www.mono-lab.net/\">Theme designed by mono-lab</a></li>\r\n		</ul>\r\n		<a id=\"return_top\" href=\"#wrapper\">Return top</a>\r\n	</div>\r\n	<!-- END #footer -->\r\n</div>\r\n<!-- END #wrapper -->\r\n\r\n\r\n<script type=\"text/javascript\">\r\n\r\n    var _gaq = _gaq || [];\r\n    _gaq.push(['_setAccount', 'UA-19601552-1']);\r\n    _gaq.push(['_trackPageview']);\r\n\r\n    (function () {\r\n        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;\r\n        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';\r\n        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);\r\n    })();\r\n\r\n</script>\r\n\r\n\r\n</body>\r\n\r\n</html>\r\n".toCharArray();
+    _jsp_string1 = "\r\n\r\n\r\n\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\" />\r\n    <meta name=\"robots\" content=\"noarchive\" />\r\n    \r\n    <title>\r\n	Labview - \u89e3\u5bc6\u4f7f\u7528\u6307\u5357_labview\u89e3\u5bc6\u652f\u6301\r\n</title>\r\n    <link href=\"/css/style.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/img/180x180.png\" />\r\n    <link rel=\"icon\" sizes=\"192x192\" href=\"/img/192x192.png\" />\r\n    <!--[if lt IE 7]>\r\n    <link href=\"/css/ie6.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <![endif]-->\r\n    <script src=\"/js/jquery-3.1.1.min.js\" type=\"text/javascript\"></script>\r\n    \r\n    <script src=\"/js/jscript.js\" type=\"text/javascript\"></script>\r\n    \r\n<meta content=\"Labview,labview\u89e3\u5bc6,\u5bc6\u7801\u7834\u89e3,labview\u5b66\u4e60\u4ea4\u6d41,\u514d\u8d39\u7834\u89e3\" name=\"keywords\" />\r\n\r\n</head>\r\n\r\n<body>\r\n\r\n<div id=\"wrapper\">\r\n	<!-- #header -->\r\n	".toCharArray();
+    _jsp_string4 = "\r\n	<!-- END #footer -->\r\n</div>\r\n<!-- END #wrapper -->\r\n</body>\r\n\r\n</html>\r\n".toCharArray();
+    _jsp_string2 = "\r\n	<script type=\"text/javascript\">\r\n		document.getElementById(\"guide\").setAttribute('class','current_page_item');\r\n	</script>\r\n	<!-- #header -->\r\n	<div id=\"contents\" class=\"clearfix\">\r\n		<div id=\"left_col\">\r\n            \r\n\r\n<div class=\"post\">\r\n    <h2 class=\"post_title\">OpenVPN for Windows</h2>\r\n    <ul class=\"post_info\">\r\n        <li>Last Updated: Oct 10, 2016</li>\r\n    </ul>\r\n    <div class=\"post_content\">\r\n        <p><b>\u63d0\u793a:&nbsp;&nbsp;</b>OpenVPN \u9002\u5408\u5728\u5df2\u63a5\u5165 IPv6 \u7f51\u7edc\u7684\u9ad8\u6821\u8303\u56f4\u4f7f\u7528\u3002\u7535\u4fe1\u5bbd\u5e26\u7b49 IPv4 \u7f51\u7edc\u7528\u6237\u4e5f\u53ef\u4ee5\u4f7f\u7528\uff08\u4ec5\u9650 Pro \u5957\u9910\uff09\u3002\r\n        </p><br />\r\n        <p><b>\u7b2c\u4e00\u6b65:&nbsp;&nbsp;</b> \u4e0b\u8f7d\u5b89\u88c5 IPv6VPN.NET \u5b9a\u5236\u7248 OpenVPN \u5ba2\u6237\u7aef\uff1a\r\n        <a target=\"_blank\" href=\"/downloads/auth/openvpn/openvpn-2.3.12-ipv6vpn.net-x86_64.exe\">64\u4f4d</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/downloads/auth/openvpn/openvpn-2.3.12-ipv6vpn.net-i686.exe\">32\u4f4d</a><br />\r\n        \uff08\u5b9a\u5236\u7248\u5185\u7f6e\u4e86\u8bc1\u4e66\u548c\u914d\u7f6e\u6587\u4ef6\uff0c\u589e\u52a0\u4e86 IPv6 DNS \u8bbe\u7f6e\u7528\u4ee5\u52a0\u901f\u57df\u540d\u89e3\u6790\uff0c\u5176\u4ed6\u4e0e\u539f\u7248\u6ca1\u6709\u5dee\u522b\uff09\r\n        <img src=\"/images/t_openvpn_windows_1.jpg\" alt=\"\" class=\"aligncenter size-full wp-image-535\"/>\r\n        \uff08\u6216\u8005\uff0c\u4f60\u53ef\u4ee5\u4ece OpenVPN \u5b98\u7f51\u4e0b\u8f7d\u5ba2\u6237\u7aef(2.3.9\u6216\u66f4\u65b0\u7248\u672c)\uff0c\u7136\u540e\u4e0b\u8f7d <a target=\"_blank\" href=\"/downloads/auth/openvpn/configs/cert.zip\">\u8bc1\u4e66</a> \u53ca <a target=\"_blank\" href=\"/config/openvpn\">\u914d\u7f6e\u6587\u4ef6</a> \uff0c\u89e3\u538b\u540e\u653e\u5230\u5b89\u88c5\u76ee\u5f55config\u6587\u4ef6\u5939\u4e0b\u3002\uff09\r\n        </p><br />\r\n        <p><b>\u7b2c\u4e8c\u6b65:&nbsp;&nbsp;</b> \u627e\u5230\u684c\u9762\u4e0a\u65b0\u51fa\u73b0\u7684 openvpn-gui \u5feb\u6377\u65b9\u5f0f\uff0c\u53cc\u51fb\u8fd0\u884c\u3002\u542f\u52a8\u540e\u53f3\u51fb\u4efb\u52a1\u680f\u4e2d\u7684\u56fe\u6807\uff0c\u6839\u636e\u6240\u5904\u7f51\u7edc\u9009\u62e9\u5408\u9002\u7684\u914d\u7f6e\u6587\u4ef6\uff08\u4f8b\u5982 IPv6_US \u662f\u6307\u901a\u8fc7 IPv6 \u7f51\u7edc\u8fde\u63a5 US \u670d\u52a1\u5668\uff09\u3002\u7136\u540e\u70b9 Connect\uff0c\u8f93\u5165\u7528\u6237\u540d\u5bc6\u7801\u3002\u7a0d\u7b49\u7247\u523b\u540e\uff0c\u5f00\u59cb\u7545\u6e38\u5168\u7403\u7f51\u7edc\u3002\r\n        <br /><img src=\"/images/t_openvpn_windows_2.jpg\" alt=\"\" class=\"aligncenter size-full wp-image-535\"/>\r\n        </p><br />\r\n        <p><b>\u8fdb\u9636\u8bbe\u7f6e:&nbsp;&nbsp;</b> \u8bf7\u70b9\u51fb <a href=\"/config/openvpn\">\u8fd9\u91cc</a> \u67e5\u770b\u53ef\u9009\u914d\u7f6e\u6587\u4ef6\u3002\u5982\u679c\u4f60\u662f\u9ad8\u6821\u7528\u6237\uff0c\u63a8\u8350\u4f7f\u7528\u4e3a\u9ad8\u6821\u5b9a\u5236\u7684\u914d\u7f6e\u6587\u4ef6\uff0c\u8fd9\u6837\u53ef\u4ee5\u5728\u8fde\u4e0aVPN\u7684\u540c\u65f6\u8bbf\u95ee\u5b66\u6821\u5185\u7f51\u3002</p><br />\r\n    </div>\r\n</div>\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n		".toCharArray();
+    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
+    _jsp_string3 = "\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	".toCharArray();
   }
 }

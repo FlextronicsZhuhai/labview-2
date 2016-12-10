@@ -1,6 +1,7 @@
 package com.joe.myvideo.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +16,26 @@ public class UserServiceImpl {
 	
 	@Autowired
 	private UserService userService;
+
+	/**
+	 * 查询总记录数
+	 * @param 
+	 * @return
+	 */
+	public int getTatolCount(Map<String, Object> params){
+		return userService.getTatolCount(params);
+	}
+	
+    /**
+     * 分页列表
+     * @param params
+     * @return
+     */
+    public List<User> pageList(Map<String, Object> params){
+    	return userService.pageList(params);
+
+    }
+    
 	
 	/**
 	 * 依据实体属性获取实体

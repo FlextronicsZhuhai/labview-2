@@ -43,39 +43,31 @@
             
 
                 <div class="post" style="line-height: 200%;">
-                    <div><b><a style="color:#369;" href="http://test-ipv6.com/" title="点此检测IPv6地址" target="_blank">已经接入IPv6网络？</a>如果是，那么注册一个帐号，三分钟搞定配置，就能像宽带一样方便上网了。</b></div>
-                    <div style="margin-top: 12px;">具体来说，IPv6VPN 是基于 OpenVPN、利用 IPv6 访问全球v4网络的上网解决方案，适合已接入 IPv6 网络的高校学生、教师和科研单位。同时也提供 IPv4 接入，适合电信、联通、移动等宽带或手机用户。</div>
-                    <h3>哪些用户适合使用 IPv6VPN 的服务？</h3>
+                    <div>
+                    	<img src="/img/index_focuse.jpeg" alt="labview.help解密服务" width="100%"/>
+                    </div>
+                    <h3>labview.help是什么网站？</h3>
                     <ol>
-                        <li>已接入 IPv6 网络，但需要办理宽带、购买流量才能上网的高校学生。使用 IPv6VPN 的服务代替宽带上网，可以节省每月上网费用的开支，并提高国外网站访问速度。</li>
-                        <li>可以访问教育网，但无法访问国际网络。使用我们的服务可以利用 IPv6 直接访问国际网络，无需宽带，无需走学校流量。</li>
-                        <li>需要加速访问国际网络的 IPv4 用户（电信、联通、移动等宽带或手机用户）。</li>
+                        <li>labview提供vi密码破解功能，破解成功率高，速度快。</li>
+                        <li>labview提供学习视频下载，大量源码资料赠送（未开放）。</li>
+                        <li>labview为广大labview工作者和爱好者提供交流平台。</li>
                     </ol>
 
                     <h3>我们的优势</h3>
                     <div>
-                    <b>简单易用</b>：Win / Mac / iOS 超便捷 VPN 配置，即刻就能使用。<br />
-                    <b>支持系统</b>：Windows，Mac OS X，iOS，Android， Linux。<br />
-                    <b>速度保证</b>：美国西海岸 100Mbps 独立服务器，Native IPv6。<br />
-                    <b>隐私安全</b>：数据加密，匿名访问，在任何地方上网均保证隐私安全。<br />
-                    <b>不限流量</b>：每月数据流量不限<sup>#</sup>。YouTube、优酷 高清大片任你看。
+                    <b>简单易用</b>：上传-->解密-->下载。<br />
+                    <b>隐私安全</b>：账号登录，绝不外泄任何一位用户文件。<br />
+                    <b>不限次数</b>：任意上传，不限制次数，但不能上传的文件不能过大，以免影响其他网友解密。
                     </div>
                     <br />
-                    <div style="font-size:10px;"># 受<a href="/tos?s=2#s2" style="color:#555;">公平使用政策</a>限制。每月公平使用量为 50 GB，超过后可继续使用，惟该月网络使用之优先次序将会较低。</div>
+                    <%--<div style="font-size:10px;"># 受<a href="/tos?s=2#s2" style="color:#555;">公平使用政策</a>限制。
+                    每月公平使用量为 50 GB，超过后可继续使用，惟该月网络使用之优先次序将会较低。</div> --%>
                 </div>
 
 
 		</div>
 		<!-- END #left_col -->
-		<div id="right_col">
-            
-
-                    <div class="side_box" style="line-height: 200%;">
-                    <h3 class="side_title side_title_f">联系我们 Contact US</h3>
-                    <span style="font-family: Consolas, Monaco, Arial, Helvetica, sans-serif;">Email: contact(at)ipv6vpn.net</span><br />
-                    </div>
-			
-		</div>
+		<c:import url="/include/right.jsp"></c:import>
 		<!-- END #right_col -->
 	</div>
 	<!-- END #contents -->

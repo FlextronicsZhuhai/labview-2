@@ -61,11 +61,7 @@
 
 		</div>
 		<!-- END #left_col -->
-		<div id="right_col">
-            
-
-			
-		</div>
+		<c:import url="/include/right.jsp"></c:import>
 		<!-- END #right_col -->
 	</div>
 	<!-- END #contents -->

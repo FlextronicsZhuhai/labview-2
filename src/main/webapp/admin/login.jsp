@@ -1,7 +1,7 @@
 <%@page import="com.joe.myvideo.entity.User"%>
 <%@page import="com.joe.myvideo.util.StringUtils"%>
-<%@page contentType="text/html" pageEncoding="UTF-8" session="false"%>
-<%@include file="/jspf/import.jsp"%>
+<%@page contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false"%>
+
 <%
 //login fail
 String st =StringUtils.get(request.getAttribute("st") , "");
@@ -258,10 +258,10 @@ fieldset {
 </head>
 <body
 	onload='document.getElementById("return").value = location.href.replace(/http:\/\/(.*)\/(.*)/, "http://$1/login.jsp");'>
-	<form id="login" action="msg.jsp" method="post">
+	<form id="login" action="${requestScope.root}/admin/msg.jsp" method="post">
 		<div>
-			<img src="themes/default/images/pcgrouplogo.png" /> <span
-				style="font-size: 40px; padding: 10px; color: #666;">myvideo</span>
+			<img src="themes/default/images/pcgrouplogo.png" width="230px"/> <span
+				style="font-size: 40px; padding: 10px; color: #666;"></span>
 		</div>
 		<fieldset id="inputs">
 			<input id="username" name="username" type="text" placeholder="我的帐号"

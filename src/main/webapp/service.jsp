@@ -231,12 +231,7 @@ overflow: hidden; " id="file"/>
 
 		</div>
 		<!-- END #left_col -->
-		<div id="right_col">
-                    <div class="side_box" style="line-height: 200%;">
-                    <h3 class="side_title side_title_f">联系我们 Contact US</h3>
-                    <span style="font-family: Consolas, Monaco, Arial, Helvetica, sans-serif;">Email: ${requestScope.email }</span><br />
-                    </div>
-		</div>
+			<c:import url="/include/right.jsp"></c:import>
 		<!-- END #right_col -->
 	</div>
 	<!-- END #contents -->

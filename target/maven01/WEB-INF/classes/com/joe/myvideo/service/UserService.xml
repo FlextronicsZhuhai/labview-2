@@ -13,7 +13,18 @@
         <result column="createAt" property="createAt" />
         <result column="updateAt" property="updateAt" />
     </resultMap>
-
+<select id="pageList" parameterType="java.util.Map" resultMap="userList">  
+    SELECT * FROM user WHERE 1=1
+       	<if test="userId > 0">and id=#{id}</if>  
+       	<if test="status > 0">and status  = #{status}</if>
+		<if test="orderBy != null and order != null">order by #{orderBy} #{order}</if>
+       	<if test="begin > 0 and end > 0">limit #{begin} , #{end}</if>    
+</select>
+<select id="getTatolCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+	SELECT count(1) FROM user WHERE 1=1
+	    <if test="userId > 0">and id=#{id}</if>  
+       	<if test="status > 0">and status  = #{id}</if> 
+</select>
 <select id="get" parameterType="com.joe.myvideo.entity.User" resultMap="userList">  
     SELECT * FROM user WHERE username=#{username} AND password=#{password} AND status=#{status}  
 </select>

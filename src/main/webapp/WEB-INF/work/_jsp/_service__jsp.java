@@ -182,15 +182,13 @@ request.setAttribute("email", email);
       out.write(_jsp_string22, 0, _jsp_string22.length);
       _caucho_expr_16.print(out, _jsp_env, false);
       out.write(_jsp_string23, 0, _jsp_string23.length);
-      _caucho_expr_16.print(out, _jsp_env, false);
-      out.write(_jsp_string24, 0, _jsp_string24.length);
       if (_jsp_ImportTag_0 == null) {
         _jsp_ImportTag_0 = new org.apache.taglibs.standard.tag.rt.core.ImportTag();
         _jsp_ImportTag_0.setPageContext(pageContext);
         _jsp_ImportTag_0.setParent((javax.servlet.jsp.tagext.Tag) null);
       }
 
-      _jsp_ImportTag_0.setUrl("/include/footer.jsp");
+      _jsp_ImportTag_0.setUrl("/include/right.jsp");
       javax.servlet.jsp.JspWriter _jsp_writer8 = out;
       try {
         _jsp_ImportTag_0.doStartTag();
@@ -199,6 +197,25 @@ request.setAttribute("email", email);
         pageContext.setWriter(_jsp_writer8);
         out = _jsp_writer8;
         _jsp_ImportTag_0.doCatch(_jsp_exn_11);
+      } finally {
+        _jsp_ImportTag_0.doFinally();
+      }
+      out.write(_jsp_string24, 0, _jsp_string24.length);
+      if (_jsp_ImportTag_0 == null) {
+        _jsp_ImportTag_0 = new org.apache.taglibs.standard.tag.rt.core.ImportTag();
+        _jsp_ImportTag_0.setPageContext(pageContext);
+        _jsp_ImportTag_0.setParent((javax.servlet.jsp.tagext.Tag) null);
+      }
+
+      _jsp_ImportTag_0.setUrl("/include/footer.jsp");
+      javax.servlet.jsp.JspWriter _jsp_writer13 = out;
+      try {
+        _jsp_ImportTag_0.doStartTag();
+        _jsp_ImportTag_0.doEndTag();
+      } catch (Throwable _jsp_exn_16) {
+        pageContext.setWriter(_jsp_writer13);
+        out = _jsp_writer13;
+        _jsp_ImportTag_0.doCatch(_jsp_exn_16);
       } finally {
         _jsp_ImportTag_0.doFinally();
       }
@@ -298,11 +315,11 @@ request.setAttribute("email", email);
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("service.jsp"), 8940977765646524582L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("service.jsp"), 3677898302532795677L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -2379442732689387975L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/E:/eclipse_workspace/labview/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
+    depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/C:/Users/zhoucijoe/git/labview/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tag.rt.core.ImportTag.class, 6027995467445314107L));
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, new com.caucho.make.ClassDependency(org.apache.taglibs.standard.tei.ImportTEI.class, 7046138242264411925L));
@@ -352,11 +369,11 @@ request.setAttribute("email", email);
   private final static char []_jsp_string17;
   private final static char []_jsp_string0;
   private final static char []_jsp_string11;
-  private final static char []_jsp_string4;
-  private final static char []_jsp_string23;
-  private final static char []_jsp_string9;
   private final static char []_jsp_string24;
+  private final static char []_jsp_string4;
+  private final static char []_jsp_string9;
   private final static char []_jsp_string13;
+  private final static char []_jsp_string23;
   private final static char []_jsp_string22;
   private final static char []_jsp_string1;
   static {
@@ -379,11 +396,11 @@ request.setAttribute("email", email);
     _jsp_string17 = "/service.jsp?pageNo=".toCharArray();
     _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string11 = "</a>\r\n	        					<a href=\"".toCharArray();
+    _jsp_string24 = "\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	".toCharArray();
     _jsp_string4 = "/zipfile/upload.do\" onsubmit=\"return submitqq();\" id=\"signupform\" method=\"post\" enctype=\"multipart/form-data\">\r\n				<div class=\"uploader white\">\r\n						<input type=\"file\" name=\"zipFile\" style=\"	\r\nfloat: left;\r\nheight: 32px;\r\nwidth: 180px;\r\nmargin-right: 80px;\r\nmargin-top:2px;\r\noverflow: hidden; \" id=\"file\"/>\r\n						<input type=\"text\" class=\"filename\" readonly=\"readonly\" />\r\n						<!-- <input type=\"button\" name=\"file\" class=\"button\" value=\"\u6d4f\u89c8\u6587\u4ef6\"/> -->\r\n						<input type=\"submit\"  class=\"button\" value=\"\u4e0a\u4f20\u89e3\u5bc6\"  id=\"submit\"/>\r\n				      	<ul>\r\n							<li style=\"line-height: 150%; color: gray;\">\u89e3\u5bc6\u6210\u529f\u540e\u8bf7\u5728\u4e0b\u65b9\u4e0b\u8f7d\u60a8\u7684\u6587\u4ef6</li>\r\n							<li style=\"line-height: 150%; color: gray;\">\u8bf7\u9009\u62e9zip\u683c\u5f0f\u7684\u6587\u4ef6\uff0c\u5355\u4e2a\u6587\u4ef6\u4e0d\u53ef\u5927\u4e8e50M</li>\r\n						</ul>\r\n				 </div>\r\n			</form>\r\n        \r\n        <h3>\u4e0b\u8f7d\u5df2\u89e3\u5bc6\u6587\u4ef6</h3>\r\n        	<div class=\"fileBox\">\r\n        		<table width=\"100%\">\r\n        			<tr>\r\n	        			<td width=\"10%\">\u5e8f\u53f7</td>\r\n	        			<td width=\"30%\">\u6587\u4ef6\u540d</td>\r\n	        			<td width=\"15%\">\u5927\u5c0f</td>\r\n	        			<td width=\"15%\">\u72b6\u6001</td>\r\n	        			<td width=\"20%\">\u64cd\u4f5c</td>\r\n	        		</tr>\r\n        			".toCharArray();
-    _jsp_string23 = "</li>\r\n			</ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n		<div id=\"right_col\">\r\n                    <div class=\"side_box\" style=\"line-height: 200%;\">\r\n                    <h3 class=\"side_title side_title_f\">\u8054\u7cfb\u6211\u4eec Contact US</h3>\r\n                    <span style=\"font-family: Consolas, Monaco, Arial, Helvetica, sans-serif;\">Email: ".toCharArray();
     _jsp_string9 = "&userId=".toCharArray();
-    _jsp_string24 = "</span><br />\r\n                    </div>\r\n		</div>\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	".toCharArray();
     _jsp_string13 = "&opera=delete\">\u5220\u9664</a>\r\n	        				</td>\r\n	        			</tr>\r\n        			".toCharArray();
+    _jsp_string23 = "</li>\r\n			</ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n			".toCharArray();
     _jsp_string22 = " \"></a>\r\n        	</div>\r\n        <br />\r\n        <div style=\"clear:both\"></div>\r\n        <h3>\u8bf4\u660e\uff1a</h3>\r\n        <div>\r\n        	<ul class=\"remar\">\r\n				<li>1\u3001\u89e3\u5bc6\u6210\u529f\u540e\u8bf7\u5728\u4e0b\u65b9\u4e0b\u8f7d\u60a8\u7684\u6587\u4ef6</li>\r\n				<li>2\u3001\u8bf7\u9009\u62e9zip\u683c\u5f0f\u7684\u6587\u4ef6\uff0c\u5355\u4e2a\u6587\u4ef6\u4e0d\u53ef\u5927\u4e8e50M</li>\r\n				<li>3\u3001\u4e3a\u4e86\u8282\u7ea6\u7a7a\u95f4\uff0c\u6bcf\u4f4d\u7528\u6237\u4ec5\u80fd\u540c\u65f6\u5728\u670d\u52a1\u4e0a\u4fdd\u7559\u4e94\u4e2a\u6587\u4ef6\u3002</li>\r\n				<li>4\u3001\u89e3\u5bc6\u9700\u8981\u6d88\u8017\u5f88\u5927\u670d\u52a1\u5668\u6027\u80fd\uff0c\u6240\u4ee5\u5927\u4e8e20M\u6587\u4ef6\u9700\u8981\u4eba\u5de5\u89e3\u5bc6\u3002</li>\r\n				<li>5\u3001\u5176\u4ed6\u95ee\u9898\u8bf7\u8054\u7cfb\u6211\u4eec\uff0c\u7535\u5b50\u90ae\u7bb1\uff1a".toCharArray();
     _jsp_string1 = "\r\n\r\n".toCharArray();
   }

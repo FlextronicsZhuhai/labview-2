@@ -1,20 +1,12 @@
-<%@page import="com.joe.myvideo.entity.User"%>
-<%@page contentType="text/html" pageEncoding="UTF-8" session="false"%>
-<%
+<%@include file="/WEB-INF/jspf/import.jspf"%>
+<%@page contentType="text/html; charset=utf-8" session="false"%>
 
-User admin = (User)request.getSession().getAttribute("admin");
-if(admin == null){
-    response.sendRedirect("login.jsp");
-    return;
-}
-pageContext.setAttribute("_USER_", admin); 
-
-%><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
-<title>video - pcgroups</title>
+<title>Labview解密后台管理</title>
 
 <link href="themes/default/style.css" rel="stylesheet" type="text/css"
 	media="screen" />
@@ -90,12 +82,13 @@ $(function(){
 	<div id="layout">
 		<div id="header">
 			<div class="headerNav">
-				<a class="logo" href="${ctx}/admin/index.jsp" style="width: 100px;">logo</a>
-				<div
-					style="float: left; color: white; font-size: 28px; padding-top: 15px;">video</div>
+				
+				<%-- <a class="logo" href="${ctx}/admin/index.jsp" style="width: 100px;">logo</a> --%>
+				<!-- <div style="float: left; color: white; font-size: 28px; padding-top: 15px;">labview</div> -->
+				<img src="themes/default/images/pcgrouplogo.png" width="230px"/>
 				<ul class="nav">
 					<li><a href="javascript:;">welcome, ${_USER_.username}!</a></li>
-					<li><a href="${ctx}/admin/login.jsp?action=logout">logout</a></li>
+					<li><a href="${requestScope.root}/admin/msg.jsp?action=logout">logout</a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div class="selected"></div></li>
@@ -129,113 +122,32 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="${ctx}/admin/gelifunction/list.do"
-								target="navTab" rel="list-gelifunction">功能列表</a></li>
-							<li><a href="${ctx}/admin/gelirole/list.do" target="navTab"
-								rel="list-gelirole">角色列表</a></li>
-							<li><a href="${ctx}/admin/gelirolefunction/list.do"
-								target="navTab" rel="list-gelirolefunction">角色功能</a></li>
-							<li><a href="${ctx}/admin/geliacl/list.do" target="navTab"
-								rel="list-geliacl">访问控制</a></li>
-							<li><a href="${ctx}/admin/geliuser/list.do" target="navTab"
-								rel="list-geliuser">用户列表</a></li>
-							<li><a
-								href="${ctx}/admin/gelilog/list.do?orderField=logId&orderDirection=desc"
-								target="navTab" rel="list-gelilog">操作日志</a></li>
-							<li><a
-								href="${ctx}/admin/gelilogdetail/list.do?orderField=logDetailId&orderDirection=desc"
-								target="navTab" rel="list-gelilogdetail">日志数据</a></li>
-							<li><a href="${ctx}/admin/gelitool/list.do" target="navTab"
-								rel="list-gelitool">代码定制</a></li>
+							<li><a href="${ctx}/user/admin-list.do"
+								target="navTab" rel="list-user">用户列表application.getContextPath()</a></li>
 						</ul>
 					</div>
 				
 					<div class="accordionHeader">
 						<h2>
-							<span>Folder</span>分类管理
+							<span>Folder</span>ZIP文件管理
 						</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="${ctx}/admin/gelifunction/list.do"
-								target="navTab" rel="list-gelifunction">分类列表</a></li>
+							<li><a href="${requestScope.root}/zipfile/admin-list.do"
+								target="navTab" rel="list-zipfile">ZIP列表</a></li>
 						</ul>
 					</div>
 				
 					<div class="accordionHeader">
 						<h2>
-							<span>Folder</span>视频管理
+							<span>Folder</span>订单管理
 						</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="${ctx}/admin/video/list.do"
-								target="navTab" rel="list-video">视频列表</a></li>
-						</ul>
-					</div>
-					
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>爬取任务
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree treeFolder">
-							<li><a href="${ctx}/admin/gelifunction/list.do"
-								target="navTab" rel="list-gelifunction">功能列表</a></li>
-							<li><a href="${ctx}/admin/gelirole/list.do" target="navTab"
-								rel="list-gelirole">角色列表</a></li>
-							<li><a href="${ctx}/admin/gelirolefunction/list.do"
-								target="navTab" rel="list-gelirolefunction">角色功能</a></li>
-							<li><a href="${ctx}/admin/geliacl/list.do" target="navTab"
-								rel="list-geliacl">访问控制</a></li>
-							<li><a href="${ctx}/admin/geliuser/list.do" target="navTab"
-								rel="list-geliuser">用户列表</a></li>
-							<li><a
-								href="${ctx}/admin/gelilog/list.do?orderField=logId&orderDirection=desc"
-								target="navTab" rel="list-gelilog">操作日志</a></li>
-							<li><a
-								href="${ctx}/admin/gelilogdetail/list.do?orderField=logDetailId&orderDirection=desc"
-								target="navTab" rel="list-gelilogdetail">日志数据</a></li>
-							<li><a href="${ctx}/admin/gelitool/list.do" target="navTab"
-								rel="list-gelitool">代码定制</a></li>
-						</ul>
-					</div>
-				
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>权限设置
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree treeFolder">
-							<li><a href="${ctx}/admin/gelifunction/list.do"
-								target="navTab" rel="list-gelifunction">功能列表</a></li>
-							<li><a href="${ctx}/admin/gelirole/list.do" target="navTab"
-								rel="list-gelirole">角色列表</a></li>
-							<li><a href="${ctx}/admin/gelirolefunction/list.do"
-								target="navTab" rel="list-gelirolefunction">角色功能</a></li>
-							<li><a href="${ctx}/admin/geliacl/list.do" target="navTab"
-								rel="list-geliacl">访问控制</a></li>
-							<li><a href="${ctx}/admin/geliuser/list.do" target="navTab"
-								rel="list-geliuser">用户列表</a></li>
-							<li><a
-								href="${ctx}/admin/gelilog/list.do?orderField=logId&orderDirection=desc"
-								target="navTab" rel="list-gelilog">操作日志</a></li>
-							<li><a
-								href="${ctx}/admin/gelilogdetail/list.do?orderField=logDetailId&orderDirection=desc"
-								target="navTab" rel="list-gelilogdetail">日志数据</a></li>
-							<li><a href="${ctx}/admin/gelitool/list.do" target="navTab"
-								rel="list-gelitool">代码定制</a></li>
-						</ul>
-					</div>
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>基础数据
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree treeFolder">
+							<li><a href="${ctx}/order/admin-list.do"
+								target="navTab" rel="list-order">订单列表</a></li>
 						</ul>
 					</div>
 				</div>
