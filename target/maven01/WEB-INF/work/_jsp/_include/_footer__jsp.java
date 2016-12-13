@@ -135,20 +135,20 @@ request.setAttribute("email", email);
     com.caucho.vfs.Depend depend;
     depend = new com.caucho.vfs.Depend(appDir.lookup("include/footer.jsp"), 2980975607541383669L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -2379442732689387975L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -1238381277323064527L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
   private static com.caucho.el.Expr _caucho_expr_0;
   private static com.caucho.el.Expr _caucho_expr_1;
 
+  private final static char []_jsp_string0;
   private final static char []_jsp_string2;
   private final static char []_jsp_string3;
   private final static char []_jsp_string1;
-  private final static char []_jsp_string0;
   static {
+    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string2 = "\">Labview.help</a></li>\r\n            <li><!-- <a href=\"/tos?s=b\"> --><a>\u8054\u7cfb\u6211\u4eec\uff1a".toCharArray();
     _jsp_string3 = "<a><!-- </a> --></li>\r\n            <!-- <li><a href=\"/faq\">FAQ</a></li> -->\r\n			<li><a href=\"http://www.mono-lab.net/\">Theme designed by mono-lab</a></li>\r\n		</ul>\r\n		<a id=\"return_top\" href=\"#wrapper\">Return top</a>\r\n	</div>".toCharArray();
     _jsp_string1 = "\r\n\r\n	<div id=\"footer\">\r\n		<ul id=\"copyright\">\r\n			<li style=\"background: none;\"><a href=\"".toCharArray();
-    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
   }
 }

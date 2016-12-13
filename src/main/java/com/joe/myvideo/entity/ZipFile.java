@@ -1,8 +1,13 @@
 package com.joe.myvideo.entity;
 
+import java.io.File;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Date;
+
+import com.joe.myvideo.enums.DecodeStatusEnum;
+import com.joe.myvideo.util.FileUtils;
+import com.joe.myvideo.util.StringUtils;
 
 public class ZipFile implements Serializable{
 	
@@ -168,5 +173,56 @@ public class ZipFile implements Serializable{
         }  
         return mysize;  
     }  
+    
+    /**
+     * 获取下载文件路径
+     * @return
+     */
+    public String getFilePath(){
+    	if(status == DecodeStatusEnum.WAIT_TO_FIX.getKey()){
+    		return uploadPath;
+    	}else if(status == DecodeStatusEnum.ALREADY_TO_FIX.getKey()){
+    		return rePressPath;
+    	}else{
+    		return uploadPath;
+    	}
+    }
+    
+    /**
+     * 删除文件
+     * @return
+     */
+    public boolean deleteFlie(){
+    	boolean flag = false;
+    	if(!StringUtils.isBlank(uploadPath)){
+    		File uf= new File(uploadPath);
+        	if(uf.exists()){
+        		FileUtils.deleteFile(uf);
+        		flag = true;
+        	}
+    	}
+    	if(!StringUtils.isBlank(depressPath)){
+    		File uf= new File(depressPath);
+    		if(uf.exists()){
+    			FileUtils.deleteFile(uf);
+    			flag = true;
+    		}
+    	}
+    	if(!StringUtils.isBlank(decodePath)){
+    		File uf= new File(decodePath);
+    		if(uf.exists()){
+    			FileUtils.deleteFile(uf);
+    			flag = true;
+    		}
+    	}
+    	if(!StringUtils.isBlank(rePressPath)){
+    		File uf= new File(rePressPath);
+    		if(uf.exists()){
+    			FileUtils.deleteFile(uf);
+    			flag = true;
+    		}
+    	}
+    	return flag;
+    }
 	
 }

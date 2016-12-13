@@ -10,6 +10,10 @@
         <result column="userId" property="userId" />
         <result column="originName" property="originName" />
         <result column="tempName" property="tempName" />
+        <result column="uploadPath" property="uploadPath" />
+        <result column="depressPath" property="depressPath" />
+        <result column="rePressPath" property="rePressPath" />
+        <result column="decodePath" property="decodePath" />
         <result column="downloadDate" property="downloadDate" />
         <result column="status" property="status" />
         <result column="size" property="size" />
@@ -25,12 +29,19 @@
 </select>
 
 <insert id="add" parameterType="com.joe.myvideo.entity.ZipFile" flushCache="true" keyProperty="id">  
-   INSERT INTO ZipFile (userId,originName,tempName,downloadDate,status,size,createAt,updateAt) 
-   VALUES (#{userId},#{originName},#{tempName},#{downloadDate},#{status},#{size},#{createAt},#{updateAt})  
+   INSERT INTO ZipFile (userId,originName,tempName,uploadPath,depressPath,rePressPath,decodePath,downloadDate,status,size,createAt,updateAt) 
+   VALUES (#{userId},#{originName},#{tempName},#{uploadPath},#{depressPath},#{rePressPath},#{decodePath},#{downloadDate},#{status},#{size},#{createAt},#{updateAt})  
 </insert>  
  <update id="updateStatus" parameterType="com.joe.myvideo.entity.ZipFile" >  
     UPDATE zipFile SET status=#{status},updateAt=now() WHERE id=#{id}  
 </update>  
+ <update id="update" parameterType="com.joe.myvideo.entity.ZipFile" >  
+    UPDATE zipFile SET
+    	 userId=#{userId},originName=#{originName},tempName=#{tempName},uploadPath=#{uploadPath},
+    	 depressPath=#{depressPath},rePressPath=#{rePressPath},decodePath=#{decodePath},
+    	 downloadDate=#{downloadDate},status=#{status},size=#{size},createAt=#{createAt},
+    	 updateAt=now() WHERE id=#{id}  
+</update> 
 <!--<delete id="delete" parameterType="int">  
     DELETE FROM user WHERE id=#{id}  
 </delete>  -->

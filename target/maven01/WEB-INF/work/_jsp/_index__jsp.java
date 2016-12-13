@@ -189,7 +189,7 @@ request.setAttribute("email", email);
     com.caucho.vfs.Depend depend;
     depend = new com.caucho.vfs.Depend(appDir.lookup("index.jsp"), 5755718067208967320L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -2379442732689387975L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("jspf/import.jsp"), -1238381277323064527L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/C:/Users/zhoucijoe/git/labview/target/maven01/WEB-INF/lib/jstl-1.2.jar!/META-INF/c.tld"), -172467247438851137L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
@@ -205,15 +205,15 @@ request.setAttribute("email", email);
     }
   }
 
+  private final static char []_jsp_string0;
   private final static char []_jsp_string1;
   private final static char []_jsp_string4;
-  private final static char []_jsp_string0;
   private final static char []_jsp_string3;
   private final static char []_jsp_string2;
   static {
+    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string1 = "\r\n\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\" />\r\n    <meta name=\"robots\" content=\"noarchive\" />\r\n    \r\n    <title>\r\n	Labview - \u63d0\u4f9blabview\u7834\u89e3\u5bc6\u7801_\u6e90\u7801\u5bc6\u7801\u7834\u89e3_labview\u514d\u8d39\u89e3\u7801\u670d\u52a1\r\n	</title>\r\n    <link href=\"/css/style.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/img/180x180.png\" />\r\n    <link rel=\"icon\" sizes=\"192x192\" href=\"/img/192x192.png\" />\r\n    <!--[if lt IE 7]>\r\n    <link href=\"/content/css/ie6.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n    <![endif]-->\r\n    <script src=\"/js/jquery-3.1.1.min.js\" type=\"text/javascript\"></script>\r\n    \r\n    <script src=\"/js/jscript.js\" type=\"text/javascript\"></script>\r\n    \r\n<meta content=\"labview\u63d0\u4f9b\u514d\u8d39\u6e90\u7801\u5bc6\u7801\u7834\u89e3\u3001labview\u8d44\u6599\u4e0b\u8f7d\u3001labview\u5b66\u4e60\u4ea4\u6d41\uff0c\u670d\u52a1\u4e8e\u5e7f\u5927\u7684labview\u5de5\u7a0b\u5e08\u3002\" name=\"description\" />\r\n<meta content=\"labview,labview\u89e3\u7801,\u5bc6\u7801\u7834\u89e3,labview\u8d44\u6599\u4e0b\u8f7d,labview\u793e\u533a,labview\u5b66\u4e60\u4ea4\u6d41,\u6e90\u7801\u4e0b\u8f7d\" name=\"keywords\" />\r\n<style type=\"text/css\" >\r\n    h3 { color: #336699; font-weight: normal;}\r\n    #left_col { padding-bottom: 0px; }\r\n    ol li { line-height: 200%; }\r\n</style>\r\n\r\n</head>\r\n\r\n<body>\r\n\r\n<div id=\"wrapper\">\r\n	<!-- #header -->\r\n	".toCharArray();
     _jsp_string4 = "\r\n	<!-- END #footer -->\r\n</div>\r\n<!-- END #wrapper -->\r\n</body>\r\n\r\n</html>\r\n".toCharArray();
-    _jsp_string0 = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n".toCharArray();
     _jsp_string3 = "\r\n		<!-- END #right_col -->\r\n	</div>\r\n	<!-- END #contents -->\r\n	".toCharArray();
     _jsp_string2 = "\r\n	<script type=\"text/javascript\">\r\n		document.getElementById(\"index\").setAttribute('class','current_page_item');\r\n	</script>\r\n	<!-- #header -->\r\n	<div id=\"contents\" class=\"clearfix\">\r\n		<div id=\"left_col\">\r\n            \r\n\r\n                <div class=\"post\" style=\"line-height: 200%;\">\r\n                    <div>\r\n                    	<img src=\"/img/index_focuse.jpeg\" alt=\"labview.help\u89e3\u5bc6\u670d\u52a1\" width=\"100%\"/>\r\n                    </div>\r\n                    <h3>labview.help\u662f\u4ec0\u4e48\u7f51\u7ad9\uff1f</h3>\r\n                    <ol>\r\n                        <li>labview\u63d0\u4f9bvi\u5bc6\u7801\u7834\u89e3\u529f\u80fd\uff0c\u7834\u89e3\u6210\u529f\u7387\u9ad8\uff0c\u901f\u5ea6\u5feb\u3002</li>\r\n                        <li>labview\u63d0\u4f9b\u5b66\u4e60\u89c6\u9891\u4e0b\u8f7d\uff0c\u5927\u91cf\u6e90\u7801\u8d44\u6599\u8d60\u9001\uff08\u672a\u5f00\u653e\uff09\u3002</li>\r\n                        <li>labview\u4e3a\u5e7f\u5927labview\u5de5\u4f5c\u8005\u548c\u7231\u597d\u8005\u63d0\u4f9b\u4ea4\u6d41\u5e73\u53f0\u3002</li>\r\n                    </ol>\r\n\r\n                    <h3>\u6211\u4eec\u7684\u4f18\u52bf</h3>\r\n                    <div>\r\n                    <b>\u7b80\u5355\u6613\u7528</b>\uff1a\u4e0a\u4f20-->\u89e3\u5bc6-->\u4e0b\u8f7d\u3002<br />\r\n                    <b>\u9690\u79c1\u5b89\u5168</b>\uff1a\u8d26\u53f7\u767b\u5f55\uff0c\u7edd\u4e0d\u5916\u6cc4\u4efb\u4f55\u4e00\u4f4d\u7528\u6237\u6587\u4ef6\u3002<br />\r\n                    <b>\u4e0d\u9650\u6b21\u6570</b>\uff1a\u4efb\u610f\u4e0a\u4f20\uff0c\u4e0d\u9650\u5236\u6b21\u6570\uff0c\u4f46\u4e0d\u80fd\u4e0a\u4f20\u7684\u6587\u4ef6\u4e0d\u80fd\u8fc7\u5927\uff0c\u4ee5\u514d\u5f71\u54cd\u5176\u4ed6\u7f51\u53cb\u89e3\u5bc6\u3002\r\n                    </div>\r\n                    <br />\r\n                    \r\n                </div>\r\n\r\n\r\n		</div>\r\n		<!-- END #left_col -->\r\n		".toCharArray();
   }

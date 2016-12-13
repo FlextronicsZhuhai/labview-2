@@ -40,7 +40,6 @@ public class ZipFileController {
 	@Autowired
 	private ZipFileServiceImpl zipFileServiceImpl;
 	
-    //注意：这个的路径不要写成“/upload”，否则会有一个意向不到的错误。
     @RequestMapping(value = "/upload.do", method = RequestMethod.POST)
     public void upload( @RequestParam(value = "zipFile", required = false) MultipartFile file,HttpServletResponse res, HttpSession session) {
 		try {
@@ -59,6 +58,7 @@ public class ZipFileController {
 	        	//获取该文件的文件名
 	        	String fileName = file.getOriginalFilename();
 	        	String tempName = user.getId()+"_"+file.getName()+"_"+DateUtils.formatDate(new Date(), "yyyy_MM_dd_HH_mm_ss").trim();
+	        	
 	        	File targetFile = new File(path, tempName);
 	        	if (!targetFile.exists()) {
 	        		targetFile.mkdirs();
@@ -72,6 +72,7 @@ public class ZipFileController {
 	        	zf.setOriginName(fileName);
 	        	zf.setTempName(tempName);
 	        	
+	        	zf.setUploadPath(path + File.separator + tempName);
 	        	zf.setSize(file.getSize());
 	        	zf.setUserId(user.getId());
 	        	if(zipFileServiceImpl.add(zf) > 0){
@@ -100,111 +101,6 @@ public class ZipFileController {
         	log.error("用户【"+userName+"】上传文件过大发生异常",e);
         }
     }
-    
-//    @RequestMapping("/download.do")    
-//    public void download(HttpServletRequest req,HttpServletResponse res, HttpSession session){    
-//        int zipId = StringUtils.getInt(req.getParameter("zipId"),0);
-//        int userId = StringUtils.getInt(req.getParameter("userId"),0);
-//        
-//        User user = (User) session.getAttribute("currentUser");
-//        try {
-//	        if(user != null && zipId > 0 && userId > 0){
-//	        	if(userId == user.getId()){
-//	        		Map<String, Object> params = new HashMap<String,Object>();
-//	        		params.put("id", zipId);
-//	        		params.put("userId", userId);
-//	        		params.put("status", 6);
-//	        		ZipFile zipFile = zipFileServiceImpl.getByCondition(params);
-//	        		String path = basePath
-//	        				+File.separator
-//	        				+user.getId()
-//	        				+File.separator
-//	        				+zipFile.getTempName();
-//	        		
-//	        		File file=new File(path);
-//	        		if(file.exists()){
-//	        			long fileLength = file.length(); 
-//	        			String fileName = new String(zipFile.getOriginName().getBytes("UTF-8"),"iso-8859-1");
-//	        			//为了解决中文名称乱码问题  
-//	        			
-//	        			res.setContentType("application/x-compress");
-//	        			res.setHeader("Content-disposition", "attachment; filename="+fileName);  
-//	        			res.setHeader("Content-Length", String.valueOf(fileLength));  
-//	        			
-//	        			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path));  
-//	        			BufferedOutputStream bos = new BufferedOutputStream(res.getOutputStream());  
-//	        			byte[] buff = new byte[2048];  
-//	        			int bytesRead;  
-//	        			while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {  
-//	        				bos.write(buff, 0, bytesRead);  
-//	        			}  
-//	        			bis.close();  
-//	        			bos.close(); 
-//	        		}else{
-//	        			T.alert(res, "文件不存在", location);
-//	        		}
-//	        	}else{
-//	        		T.alert(res, "文件不属于你", location);
-//	        	}
-//	        }else{
-//	        	if(user == null){
-//	        		T.alert(res, "你尚未登录", location);
-//	        	}else {
-//	        		T.alert(res, "参数有误，下载失败", location);
-//	        	}
-//	        }
-//    	}catch (Exception ex) {
-//    		T.alert(res, "下载失败", location);
-//        	log.error("下载文件发生异常",ex);
-//        }
-//    }  
-//    
-//    @RequestMapping("/delete.do")    
-//    public void delete(HttpServletRequest req,HttpServletResponse res, HttpSession session){
-//        int zipId = StringUtils.getInt(req.getParameter("zipId"),0);
-//        int userId = StringUtils.getInt(req.getParameter("userId"),0);
-//        
-//        User user = (User) session.getAttribute("currentUser");
-//        try {
-//	        if(user != null && zipId > 0 && userId > 0){
-//	        	if(userId == user.getId()){
-//	        		Map<String, Object> params = new HashMap<String,Object>();
-//	        		params.put("id", zipId);
-//	        		params.put("userId", userId);
-//	        		params.put("status", 6);
-//	        		ZipFile zipFile = zipFileServiceImpl.getByCondition(params);
-//	        		String path = basePath
-//	        				+File.separator
-//	        				+user.getId()
-//	        				+File.separator
-//	        				+zipFile.getTempName();
-//	        		
-//	        		File file=new File(path);
-//	        		if(file.exists()){
-//	        			zipFile.setStatus(ZipFile.ALREADY_TO_DELETE);
-//	        			if(zipFileServiceImpl.updateStatus(zipFile) > 0){
-//	        				T.alert(res, "删除成功", location);
-//	        			}else{
-//	        				T.alert(res, "删除失败", location);
-//	        			}
-//	        		}else{
-//	        			T.alert(res, "文件不存在", location);
-//	        		}
-//	        	}else{
-//	        		T.alert(res, "文件不属于你", location);
-//	        	}
-//	        }else{
-//	        	if(user == null){
-//	        		T.alert(res, "你尚未登录", location);
-//	        	}else {
-//	        		T.alert(res, "参数有误，下载失败", location);
-//	        	}
-//	        }
-//        }catch (Exception e) {
-//        	T.alert(res, "发生错误", location);
-//        	log.error("下载文件发生异常",e);
-//		}
-//    }
     
     @RequestMapping("/opera.do")    
     public void opera(HttpServletRequest req,HttpServletResponse res, HttpSession session){

@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import com.joe.myvideo.entity.User;
 import com.joe.myvideo.entity.ZipFile;
 import com.joe.myvideo.enums.DecodeStatusEnum;
 import com.joe.myvideo.service.ZipFileService;
+import com.joe.myvideo.util.DateUtils;
 import com.joe.myvideo.util.HttpUtils;
 import com.joe.myvideo.util.StringUtils;
 import com.joe.myvideo.util.SysConfig;
@@ -37,6 +39,8 @@ public class ZipFileServiceImpl {
 	private static final String location = "/service.jsp";
 	private static final String basePath = SysConfig.getConfig("upload.path");
 	private static final String temPath = SysConfig.getConfig("upload.temPath");
+	private static final String decode = SysConfig.getConfig("upload.decode");
+	private static final String repress = SysConfig.getConfig("upload.repress");
 	
 	@Autowired
 	private ZipFileService zipFileService;
@@ -100,20 +104,16 @@ public class ZipFileServiceImpl {
         		params.put("userId", userId);
         		params.put("status", 6);
         		ZipFile zipFile = getByCondition(params);
-        		String path = basePath
-        				+File.separator
-        				+user.getId()
-        				+File.separator
-        				+zipFile.getTempName();
+
         		switch (opera) {
 				case "download":
-					download(zipFile, path, res);
+					download(zipFile, res ,user);
 					break;
 				case "delete":
-					delete(zipFile, path, res);
+					delete(zipFile, res);
 					break;
 				case "decode":
-					decode(zipFile, path, res , user);
+					decode(zipFile, res , user);
 					break;
 				
 				default:
@@ -131,9 +131,27 @@ public class ZipFileServiceImpl {
         }
 	}
 	
-	public void download(ZipFile zipFile , String path ,HttpServletResponse res) throws Exception{
-		File file=new File(path);
-		if(file.exists()){
+	public void download(ZipFile zipFile , HttpServletResponse res ,User user) throws Exception{
+			if(zipFile.getStatus() == DecodeStatusEnum.ALREADY_TO_FIX.getKey()){
+				String outPath = repress
+						+"\\"
+						+user.getId()
+						+"\\"
+						+zipFile.getTempName()+".zip";//压输出路径
+				
+				ZipUtil.ZipFiles(zipFile.getDecodePath(), "C:\\Users\\zhoucijoe\\Desktop\\hh\\6666.zip");
+				
+				zipFile.setRePressPath(outPath);
+				zipFile.setUpdateAt(new Date());
+				zipFileService.update(zipFile);//更新数据库
+			}
+			
+			String path = zipFile.getFilePath();
+			
+			File file=new File(path);
+			if(file.exists()){
+			
+			
 			long fileLength = file.length(); 
 			String fileName = new String(zipFile.getOriginName().getBytes("UTF-8"),"iso-8859-1");
 			//为了解决中文名称乱码问题  
@@ -151,16 +169,19 @@ public class ZipFileServiceImpl {
 			}  
 			bis.close();  
 			bos.close();
+			
+			zipFile.setDownloadDate(new Date());
+			zipFile.setUpdateAt(new Date());
+			zipFileService.update(zipFile);//更新数据库
 		}else{
 			T.alert(res, "文件不存在", location);
 		}
 	}
 	
-	public void delete(ZipFile zipFile , String path ,HttpServletResponse res) throws Exception{
-		File file=new File(path);
-		if(file.exists()){
+	public void delete(ZipFile zipFile ,HttpServletResponse res) throws Exception{
+		if(zipFile.deleteFlie()){
 			zipFile.setStatus(DecodeStatusEnum.ALREADY_TO_DELETE.getKey());
-			if(updateStatus(zipFile) > 0){
+			if(updateStatus(zipFile) > 0){	
 				T.alert(res, "删除成功", location);
 			}else{
 				T.alert(res, "删除失败", location);
@@ -170,44 +191,40 @@ public class ZipFileServiceImpl {
 		}
 	}
 	
-	public void decode(ZipFile zipFile , String path ,HttpServletResponse res ,User user) throws Exception{
-		File file=new File(path);
+	public void decode(ZipFile zipFile , HttpServletResponse res ,User user) throws Exception{
+		File file=new File(zipFile.getUploadPath());
 		if(file.exists()){
 			String outputDir = temPath
 					+File.separator
 					+user.getId()
 					+File.separator
-					+zipFile.getTempName()
-					+File.separator;
+					+zipFile.getTempName();//解压输出路径
+			
+			String outPathRoot = decode
+					+File.separator
+					+user.getId()
+					+File.separator
+					+zipFile.getTempName();//解密输出路径
+
 			try{
 				ZipUtil.unZipFiles(file, outputDir);
+				int status =  DecodeStatusEnum.IS_FIXING.getKey();
+				zipFile.setStatus(status);
+				zipFile.setDepressPath(outputDir);
+				zipFileService.update(zipFile);
 				
-//				if(updateStatus(zipFile) > 0){
-//					T.alert(res, "正在为你解密,请稍后", location);
-//				}else{
-//					T.alert(res, "解密失败，请稍后再试", location);
-//				}
 				String phpRoot = SysConfig.getConfig("php.root");
+				String result = HttpUtils.sendGet(phpRoot ,"inPathRoot="+outputDir+"&outPathRoot="+outPathRoot);
+				String now = DateUtils.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
 				
-				String result = HttpUtils.sendPost(phpRoot, "path="+outputDir);
-				if(!StringUtils.isBlank(result)){
-					JSONObject ob = JSONObject.parseObject(result);
-					int status = StringUtils.getInt(ob.get("status")
-							, DecodeStatusEnum.IS_FIXING.getKey());
-					
-					if(status == DecodeStatusEnum.ALREADY_TO_FIX.getKey()){
-						T.alert(res, "解密成功", location);
-					}else if(status == DecodeStatusEnum.CAN_NOT_FIX.getKey()){
-						T.alert(res, "无法解密，请联系管理员", location);
-					}else if(status == DecodeStatusEnum.IS_ILLEGAL.getKey()){
-						T.alert(res, "上传的文件不符合要求，请重试", "/guide.jsp");
-					}else if(status == DecodeStatusEnum.ALREADY_TO_DELETE.getKey()){
-						T.alert(res, "文件不存在", location);
-					}
-					zipFile.setStatus(status);
-					zipFileService.updateStatus(zipFile);
+				log.info("["+now+"] : 向解密系统发出请求,userId="+user.getId()+user.getUsername()+"&fileId="+zipFile.getId());
+				log.info("["+now+"] : 返回结果" + result);
+				
+				JSONObject json = JSONObject.parseObject(result);
+				if(json.getInteger("status") == 1){
+					T.alert(res, "解密请求已提交，请稍等片刻", location);
 				}else{
-					T.alert(res, "正在为你解密，请稍后", location);
+					T.alert(res, "解密请求异常，请重试或联系管理员", location);
 				}
 			}catch (Exception e) {
 				log.error("解密失败" ,e);
@@ -217,5 +234,6 @@ public class ZipFileServiceImpl {
 			T.alert(res, "文件不存在", location);
 		}
 	}
+
 
 }

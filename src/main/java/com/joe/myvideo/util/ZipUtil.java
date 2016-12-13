@@ -1,5 +1,6 @@
 package com.joe.myvideo.util;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,10 +8,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
+
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;
-import org.apache.tools.zip.ZipOutputStream;
-import org.springframework.aop.ThrowsAdvice;
+import org.codehaus.plexus.util.IOUtil;
 
 import com.github.junrar.Archive;
 import com.github.junrar.rarfile.FileHeader;
@@ -40,29 +43,39 @@ public class ZipUtil {
      * @param zipfile
      *            File 压缩后的文件
      */
-    public static void ZipFiles(java.io.File[] srcfile, java.io.File zipfile) {
-        byte[] buf = new byte[1024];
-        try {
-            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(
-                    zipfile));
-            for (int i = 0; i < srcfile.length; i++) {
-                FileInputStream in = new FileInputStream(srcfile[i]);
-                out.putNextEntry(new ZipEntry(srcfile[i].getName()));
-                String str = srcfile[i].getName();
-                int len;
-                while ((len = in.read(buf)) > 0) {
-                    out.write(buf, 0, len);
-                }
-                out.closeEntry();
-                in.close();
-            }
-            out.close();
-            System.out.println("压缩完成.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void ZipFiles(String srcfile, String zippath	) {
+    	try {
+	        File file = new File(srcfile);// 要被压缩的文件夹
+	        File zipFile = new File(zippath);
+	        InputStream input = null;
+	        
+	        File parent = new File(zipFile.getParent());
+	        if(!parent.exists()){
+	        	parent.mkdirs(); 
+	        }
+	        ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(zipFile));
+	        if(file.isDirectory()){
+	            File[] files = file.listFiles();
+	            for(int i = 0; i < files.length; ++i){
+	                input = new FileInputStream(files[i]);
+	                zipOut.putNextEntry(new ZipEntry(file.getName() + File.separator + files[i].getName()));
+	                int temp = 0;
+	                while((temp = input.read()) != -1){
+	                    zipOut.write(temp);
+	                }
+	                input.close();
+	            }
+	        }
+	        zipOut.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
+    
+    public static void main(String[] args) {
+    	ZipFiles("C:\\Users\\zhoucijoe\\Desktop\\新建文件夹", "C:\\Users\\zhoucijoe\\Desktop\\6666.zip");
+	}
     /**
      * zip解压缩
      * 

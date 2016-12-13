@@ -134,7 +134,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="${requestScope.root}/admin/zipfile/list.do"
+							<li><a href="${requestScope.root}/zipfile/admin-list.do"
 								target="navTab" rel="list-zipfile">ZIP列表</a></li>
 						</ul>
 					</div>
@@ -146,7 +146,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="${ctx}/admin/order/list.do"
+							<li><a href="${ctx}/order/admin-list.do"
 								target="navTab" rel="list-order">订单列表</a></li>
 						</ul>
 					</div>
